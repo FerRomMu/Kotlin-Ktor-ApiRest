@@ -1,21 +1,22 @@
-package vsapp
+package vsapp.routes
 
-import vsapp.plugins.configureRouting
-import io.ktor.http.*
 import io.ktor.client.request.*
 import io.ktor.client.statement.*
-import kotlin.test.*
+import io.ktor.http.*
 import io.ktor.server.testing.*
+import org.junit.Test
+import vsapp.plugins.configureRouting
+import kotlin.test.assertEquals
 
-class ApplicationTest {
+class UserRoutesTest {
     @Test
     fun testRoot() = testApplication {
         application {
             configureRouting()
         }
-        client.get("/").apply {
+        client.get("/login").apply {
             assertEquals(HttpStatusCode.OK, status)
-            assertEquals("Hello World!", bodyAsText())
+            assertEquals("Te logueaste", bodyAsText())
         }
     }
 }
