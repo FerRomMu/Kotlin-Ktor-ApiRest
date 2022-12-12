@@ -18,15 +18,9 @@
 ### PartyDTO
 ```json
 {
-  "order": [{ "name":"string", "genere":"string" }],
+  "order": [{ "name":"string", "genere":"string", "id": "Long" }],
   "family": [["string"]],
   "relationships": [{ "parejaA": "string", "parejaB": "string" }]
-}
-```
-### PartyLoginDTO
-```json
-{
-  "partyId": "Long"
 }
 ```
 ### MemberDTO
@@ -60,6 +54,7 @@
 ### ChallengeResultDTO
 ```json
 {
+  "partyId": "Long",
   "code" : "Long",
   "points": "Int",
   "acceptedBy": [{ "name": "string", "id": "Long" }],
@@ -69,7 +64,15 @@
 ### CategoriesDTO
 ```json
 {
-    "categories": [{"name": "string", "description": "string"}]
+  "categories": [{"name": "string", "description": "string"}]
 }
 ```
------
+### PointsDTO
+
+```json
+{
+  "partyId": "Long",
+  "record": "Int",
+  "members": [{ "name": "string", "points": "Int" }]
+}
+```
