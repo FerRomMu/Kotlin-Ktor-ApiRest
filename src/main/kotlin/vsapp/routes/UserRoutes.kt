@@ -5,7 +5,7 @@ import io.ktor.server.response.*
 import io.ktor.server.routing.*
 
 fun Route.userRoute() {
-    get("/login") {
-        call.respondText("Te logueaste")
+    route("/user") {
+        post("/login") { call.respondText("Te logueaste") }
     }
 }

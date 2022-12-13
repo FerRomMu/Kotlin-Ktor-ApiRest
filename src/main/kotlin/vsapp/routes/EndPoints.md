@@ -4,7 +4,7 @@
 ## User
 
 ----
-### POST: /login
+### POST: user/login
 
 **Params**:
 

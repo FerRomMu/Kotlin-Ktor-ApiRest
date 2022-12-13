@@ -1,1 +1,1 @@
-rootProject.name = "Vsapp"
+rootProject.name = "vsapp"
