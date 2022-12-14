@@ -76,3 +76,10 @@
   "members": [{ "name": "string", "points": "Int" }]
 }
 ```
+
+### ErrorDTO
+```json
+{
+  "errorMessage": "String"
+}
+```

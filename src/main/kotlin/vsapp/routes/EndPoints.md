@@ -18,10 +18,10 @@
 ```
 **Response**:
 
-| Code | Message | Body        | Header                  |
-|------|---------|-------------|-------------------------|
-| 200  | OK      | ``UserDTO`` | ``Authorization: Long`` |
-
+| Code | Message | Body                 | Header                   |
+|------|---------|----------------------|--------------------------|
+| 200  | OK      | ``UserDTO/ErrorDTO`` | ``Authorization: Long?`` |
+| 400  | OK      | ``ErrorDTO``         |                          |
 ----
 
 ## Party
@@ -43,6 +43,8 @@
 | Code | Message | Body         | Header |
 |------|---------|--------------|--------|
 | 200  | OK      | ``PartyDTO`` |        |
+| 401  | OK      | ``ErrorDTO`` |        |
+| 404  | OK      | ``ErrorDTO`` |        |
 ---
 
 ### POST: /party
@@ -64,6 +66,7 @@
 | Code | Message | Body         | Header            |
 |------|---------|--------------|-------------------|
 | 200  | OK      | ``PartyDTO`` | ``partyId: Long`` |
+| 401  | OK      | ``ErrorDTO`` |                   |
 _____
 ### POST: /party/{id}/edit
 
@@ -85,6 +88,9 @@ _____
 | Code | Message | Body         | Header |
 |------|---------|--------------|--------|
 | 200  | OK      | ``PartyDTO`` |        |
+| 401  | OK      | ``ErrorDTO`` |        |
+| 403  | OK      | ``ErrorDTO`` |        |
+| 404  | OK      | ``ErrorDTO`` |        |
 ---
 
 ## Members
@@ -105,6 +111,9 @@ _____
 | Code | Message | Body          | Header |
 |------|---------|---------------|--------|
 | 200  | OK      | ``MemberDTO`` |        |
+| 401  | OK      | ``ErrorDTO``  |        |
+| 403  | OK      | ``ErrorDTO``  |        |
+| 404  | OK      | ``ErrorDTO``  |        |
 ----
 
 ## Challenges
@@ -125,6 +134,7 @@ _____
 | Code | Message | Body              | Header |
 |------|---------|-------------------|--------|
 | 200  | OK      | ``CategoriesDTO`` |        |
+| 401  | OK      | ``ErrorDTO``      |        |
 ----
 ### GET: /challenge
 
@@ -145,6 +155,8 @@ _____
 | Code | Message | Body             | Header |
 |------|---------|------------------|--------|
 | 200  | OK      | ``ChallengeDTO`` |        |
+| 400  | OK      | ``ErrorDTO``     |        |
+| 401  | OK      | ``ErrorDTO``     |        |
 ----
 ### PUT: /challengeResult
 
@@ -166,3 +178,6 @@ _____
 | Code | Message | Body           | Header |
 |------|---------|----------------|--------|
 | 200  | OK      | ``PointsDTO``  |        |
+| 400  | OK      | ``ErrorDTO``   |        |
+| 401  | OK      | ``ErrorDTO``   |        |
+| 403  | OK      | ``ErrorDTO``   |        |

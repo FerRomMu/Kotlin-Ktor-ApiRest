@@ -1,5 +1,9 @@
-package vsapp.model
+package vsapp.model.dtos
 
+import kotlinx.serialization.Serializable
+import vsapp.model.dtos.PartyDTO
+
+@Serializable
 data class UserDTO(
     val id: Long,
     val user: String,
