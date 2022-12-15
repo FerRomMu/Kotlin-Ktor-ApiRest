@@ -11,6 +11,9 @@ import vsapp.exceptions.WrongLoginException
 import vsapp.model.dtos.ErrorDTO
 import vsapp.model.dtos.LoginUserDTO
 
+/**
+ * Configure all routes that corresponds to /user.
+ */
 fun Route.userRoute() {
     val userController = UserController()
     route("/user") {

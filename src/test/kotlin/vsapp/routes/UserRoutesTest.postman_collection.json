@@ -89,16 +89,14 @@
 					}
 				},
 				"url": {
-					"raw": "http://127.0.0.1:8080/login",
+					"raw": "http://localhost:8080/user/login",
 					"protocol": "http",
 					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
+						"localhost"
 					],
 					"port": "8080",
 					"path": [
+						"user",
 						"login"
 					]
 				}
@@ -117,7 +115,7 @@
 							"});",
 							"pm.test(\"Response with bad user or password\", function () {",
 							"    var jsonData = pm.response.json();",
-							"    pm.expect(jsonData.message).to.eql(\"Bad user or password.\");",
+							"    pm.expect(jsonData.message).to.eql(\"Wrong user or password.\");",
 							"});"
 						],
 						"type": "text/javascript"
@@ -137,16 +135,14 @@
 					}
 				},
 				"url": {
-					"raw": "http://127.0.0.1:8080/login",
+					"raw": "http://localhost:8080/user/login",
 					"protocol": "http",
 					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
+						"localhost"
 					],
 					"port": "8080",
 					"path": [
+						"user",
 						"login"
 					]
 				}

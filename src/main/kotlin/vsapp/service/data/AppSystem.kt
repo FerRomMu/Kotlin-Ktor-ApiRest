@@ -3,6 +3,9 @@ package vsapp.service.data
 import vsapp.model.dtos.PartyDTO
 import vsapp.model.dtos.UserDTO
 
+/**
+ * Fake data to test
+ */
 object AppSystem {
 
     val users = mapOf(

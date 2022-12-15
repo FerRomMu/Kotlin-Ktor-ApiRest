@@ -1,7 +1,6 @@
 package vsapp.model.dtos
 
 import kotlinx.serialization.Serializable
-import vsapp.model.dtos.PartyDTO
 
 @Serializable
 data class UserDTO(
