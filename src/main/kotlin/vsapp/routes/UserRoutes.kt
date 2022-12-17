@@ -3,6 +3,8 @@ package vsapp.routes
 import com.typesafe.config.ConfigFactory
 import io.ktor.http.*
 import io.ktor.server.application.*
+import io.ktor.server.auth.*
+import io.ktor.server.auth.jwt.*
 import io.ktor.server.config.*
 import io.ktor.server.plugins.*
 import io.ktor.server.request.*
@@ -33,6 +35,14 @@ fun Route.userRoute() {
                 call.respond(HttpStatusCode(400, "BadRequest"), ErrorDTO("Body needs to have a user and a password."))
             } catch(e: WrongLoginException) {
                 call.respond(ErrorDTO(e.message))
+            }
+        }
+        authenticate {
+            get("/self") {
+                val principal = call.principal<JWTPrincipal>()
+                val user = principal!!.payload.getClaim("user").asString()
+                val userId = principal!!.payload.getClaim("userId").asLong()
+                call.respondText("User: $user, Id: $userId")
             }
         }
     }
