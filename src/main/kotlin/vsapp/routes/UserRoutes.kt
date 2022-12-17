@@ -40,9 +40,9 @@ fun Route.userRoute() {
         authenticate {
             get("/self") {
                 val principal = call.principal<JWTPrincipal>()
-                val user = principal!!.payload.getClaim("user").asString()
                 val userId = principal!!.payload.getClaim("userId").asLong()
-                call.respondText("User: $user, Id: $userId")
+
+                call.respond(AppSystem.usersById[userId]!!)
             }
         }
     }

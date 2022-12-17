@@ -148,6 +148,91 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "self200",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Response with user info\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.id).to.eql(0);",
+							"    pm.expect(jsonData.user).to.eql(\"a\");",
+							"    pm.expect(jsonData.email).to.eql(\"a@a\");",
+							"    pm.expect(jsonData.lastParty);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJqd3QtYXVkaWVuY2UiLCJpc3MiOiJodHRwOi8vMC4wLjAuMDo4MDgwLyIsImV4cCI6MTY3MTMxMDIyMiwidXNlciI6ImEiLCJ1c2VySWQiOjB9.rWWmaCjpP3ufTlycq-IeQA976l47zCQuCViF-u7d3cE",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/user/self",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"user",
+						"self"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "self401",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 401\", function () {",
+							"    pm.response.to.have.status(401);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJqd3QtYXVkaWVuY2UiLCJpcfd3MiOiJodHRwOi8vMC4wLjAuMDo4MDgwLyIsImV4cCI6MTY3MTMxMDIyMiwidXNlciI6ImEiLCJ1c2VySWQiOjB9.rWWmaCjpP3ufTlycq-IeQA976l47zCQuCViF-u7d3cE",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/user/self",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"user",
+						"self"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
