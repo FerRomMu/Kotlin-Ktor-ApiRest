@@ -5,9 +5,7 @@ import vsapp.service.data.AppSystem
 import vsapp.model.dtos.LoginUserDTO
 import vsapp.model.dtos.UserDTO
 
-class UserController() {
-
-    private val system = AppSystem
+class UserController(private val system: AppSystem) {
 
     /**
      * Checks the given user to exists and returns his DTO.

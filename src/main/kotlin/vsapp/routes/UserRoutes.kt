@@ -13,13 +13,14 @@ import vsapp.controllers.UserController
 import vsapp.exceptions.WrongLoginException
 import vsapp.model.dtos.ErrorDTO
 import vsapp.model.dtos.LoginUserDTO
+import vsapp.service.data.AppSystem
 
 /**
  * Configure all routes that corresponds to /user.
  */
 fun Route.userRoute() {
 
-    val userController = UserController()
+    val userController = UserController(AppSystem)
     val tokenController = TokenController(HoconApplicationConfig(ConfigFactory.load()))
 
     route("/user") {
