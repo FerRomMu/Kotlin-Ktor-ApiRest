@@ -1,0 +1,617 @@
+{
+	"info": {
+		"_postman_id": "9fc8b508-d67a-489f-b579-f308b7495f93",
+		"name": "PartyRoutesTest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "id200",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Response with user info\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.order);",
+							"    pm.expect(jsonData.family);",
+							"    pm.expect(jsonData.relationships);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{Auth}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/party/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"party",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "id401",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 401\", function () {",
+							"    pm.response.to.have.status(401);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "bad auth",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/party/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"party",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "party200",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Response with user info\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.order).to.eq([{ \"name\":\"Fafafa\", \"genere\":\"M\" }, { \"name\":\"Fofofo\", \"genere\":\"F\" }, { \"name\":\"Fufufu\", \"genere\":\"M\" }]);",
+							"    pm.expect(jsonData.family).to.eq([[\"Fafafa\", \"Fofofo\"]]);",
+							"    pm.expect(jsonData.relationships).to.eq([{ \"parejaA\": \"Fafafa\", \"parejaB\": \"Fufufu\" }]);",
+							"});",
+							"pm.test(\"partyId is present\", function () {",
+							"    pm.response.to.have.header(\"partyId\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{Auth}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"order\" : [{ \"name\":\"Fafafa\", \"genere\":\"M\" }, { \"name\":\"Fofofo\", \"genere\":\"F\" }, { \"name\":\"Fufufu\", \"genere\":\"M\" }],\n  \"family\" : [[\"Fafafa\", \"Fofofo\"]],\n  \"relationships\" : [{ \"parejaA\": \"Fafafa\", \"parejaB\": \"Fufufu\" }]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/party",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"party"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "idEdit401",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 401\", function () {",
+							"    pm.response.to.have.status(401);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "badAuth",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"order\" : [{ \"name\":\"Fefefe\", \"genere\":\"M\" }, { \"name\":\"Fififi\", \"genere\":\"F\" }, { \"name\":\"Fafafa\", \"genere\":\"M\" }],\n  \"family\" : [[\"Fefefe\", \"Fififi\"]],\n  \"relationships\" : [{ \"parejaA\": \"Fefefe\", \"parejaB\": \"Fafafa\" }]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/party/1/edit",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"party",
+						"1",
+						"edit"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "idEdit403",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 403\", function () {",
+							"    pm.response.to.have.status(403);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "badAuth",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"order\" : [{ \"name\":\"Fefefe\", \"genere\":\"M\" }, { \"name\":\"Fififi\", \"genere\":\"F\" }, { \"name\":\"Fafafa\", \"genere\":\"M\" }],\n  \"family\" : [[\"Fefefe\", \"Fififi\"]],\n  \"relationships\" : [{ \"parejaA\": \"Fefefe\", \"parejaB\": \"Fafafa\" }]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/party/2/edit",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"party",
+						"2",
+						"edit"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "idEdit200",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Response with user info\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.order).to.eq([{ \"name\":\"Fefefe\", \"genere\":\"M\" }, { \"name\":\"Fififi\", \"genere\":\"F\" }, { \"name\":\"Fafafa\", \"genere\":\"M\" }]);",
+							"    pm.expect(jsonData.family).to.eq([[\"Fefefe\", \"Fififi\"]]);",
+							"    pm.expect(jsonData.relationships).to.eq([{ \"parejaA\": \"Fefefe\", \"parejaB\": \"Fafafa\" }]);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{Auth}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"order\" : [{ \"name\":\"Fefefe\", \"genere\":\"M\" }, { \"name\":\"Fififi\", \"genere\":\"F\" }, { \"name\":\"Fafafa\", \"genere\":\"M\" }],\n  \"family\" : [[\"Fefefe\", \"Fififi\"]],\n  \"relationships\" : [{ \"parejaA\": \"Fefefe\", \"parejaB\": \"Fafafa\" }]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/party/1/edit",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"party",
+						"1",
+						"edit"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "idEdit400",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{Auth}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"order\" : [{ \"name\":\"Fefefe\", \"genere\":\"M\" }, { \"name\":\"Fififi\", \"genere\":\"F\" }, { \"name\":\"Fafafa\", \"genere\":\"M\" }],\n  \"family\" : [[\"Fefefe\", \"Fefefe\"]],\n  \"relationships\" : [{ \"parejaA\": \"Fefefe\", \"parejaB\": \"Fafafa\" }]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/party/1/edit",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"party",
+						"1",
+						"edit"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "party400BadPartyFamily",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});",
+							"pm.test(\"Response with error\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.message).to.eql(\"Invalid family or relationship.\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{Auth}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"order\" : [{ \"name\":\"Fafafa\", \"genere\":\"M\" }, { \"name\":\"Fofofo\", \"genere\":\"F\" }, { \"name\":\"Fufufu\", \"genere\":\"M\" }],\n  \"family\" : [[\"Fafafa\"]],\n  \"relationships\" : [{ \"parejaA\": \"Fafafa\", \"parejaB\": \"Fufufu\" }]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/party",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"party"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "party400BadPartyRelationships",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});",
+							"pm.test(\"Response with error\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.message).to.eql(\"Invalid family or relationship.\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{Auth}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"order\" : [{ \"name\":\"Fafafa\", \"genere\":\"M\" }, { \"name\":\"Fofofo\", \"genere\":\"F\" }, { \"name\":\"Fufufu\", \"genere\":\"M\" }],\n  \"family\" : [[\"Fafafa\", \"Fofofo\"]],\n  \"relationships\" : [{ \"parejaA\": \"Fafafa\", \"parejaB\": \"Fafafa\" }]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/party",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"party"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "party400BadPartyOrder",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});",
+							"pm.test(\"Response with error\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.message).to.eql(\"A party must have members.\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{Auth}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"order\" : [{ \"name\":\"Fafafa\", \"genere\":\"M\" }],\n  \"family\" : [[\"Fafafa\", \"Fofofo\"]],\n  \"relationships\" : [{ \"parejaA\": \"Fafafa\", \"parejaB\": \"Fufufu\" }]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/party",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"party"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "party400InvalidMember",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});",
+							"pm.test(\"Response with error\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.message).to.eql(\"Invalid member for family or relationship.\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{Auth}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"order\" : [{ \"name\":\"Fafafa\", \"genere\":\"M\" }],\n  \"family\" : [[\"Fafafa\", \"Fififi\"]],\n  \"relationships\" : [{ \"parejaA\": \"Fafafa\", \"parejaB\": \"Fufufu\" }]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/party",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"party"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
