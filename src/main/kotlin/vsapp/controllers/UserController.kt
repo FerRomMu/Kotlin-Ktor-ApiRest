@@ -1,6 +1,7 @@
 package vsapp.controllers
 
 import vsapp.model.dtos.LoginUserDTO
+import vsapp.model.dtos.SignInDTO
 import vsapp.model.dtos.UserDTO
 import vsapp.model.dtos.mapping.UserMapper
 import vsapp.service.UserServiceImpl
@@ -26,5 +27,14 @@ class UserController() {
      */
     fun getUser(id: Long): UserDTO? {
         return userMapper.toDTO(service.getUser(id))
+    }
+
+    /**
+     * Try to sign in a new user and returns the UserDTO for that new user.
+     * param: data has the user, password and email for the user to signin.
+     * returns: UserDTO of the register user or null if it was not possible.
+     */
+    fun signIn(data: SignInDTO): UserDTO? {
+        return userMapper.toDTO(service.signIn(data.user, data.password, data.email))
     }
 }

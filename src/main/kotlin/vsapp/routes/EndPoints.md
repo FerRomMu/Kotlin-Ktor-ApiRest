@@ -18,12 +18,49 @@
 ```
 **Response**:
 
-| Code | Message | Body                 | Header                   |
-|------|---------|----------------------|--------------------------|
-| 200  | OK      | ``UserDTO/ErrorDTO`` | ``Authorization: Long?`` |
-| 400  | OK      | ``ErrorDTO``         |                          |
+| Code | Message    | Body                 | Header                   |
+|------|------------|----------------------|--------------------------|
+| 200  | OK         | ``UserDTO/ErrorDTO`` | ``Authorization: Long?`` |
+| 400  | BadRequest | ``ErrorDTO``         |                          |
 ----
+### GET: user/self
 
+**Params**:
+Authorization: header
+
+**Body**:
+
+```json
+{}
+```
+**Response**:
+
+| Code | Message      | Body          | Header |
+|------|--------------|---------------|--------|
+| 200  | OK           | ``UserDTO``   |        |
+| 401  | Unauthorized | ``ErrorDTO``  |        |
+----
+### POST: user/register
+
+**Params**:
+
+**Body**:
+
+```json
+{
+  "user": "string",
+  "password": "string",
+  "email": "string"
+}
+```
+**Response**:
+
+| Code | Message    | Body                 | Header                   |
+|------|------------|----------------------|--------------------------|
+| 200  | OK         | ``UserDTO/ErrorDTO`` | ``Authorization: Long?`` |
+| 400  | BadRequest | ``ErrorDTO``         |                          |
+| 409  | Conflict   | ``ErrorDTO``         |                          |
+----
 ## Party
 
 ----
@@ -40,11 +77,11 @@
 ```
 **Response**:
 
-| Code | Message | Body         | Header |
-|------|---------|--------------|--------|
-| 200  | OK      | ``PartyDTO`` |        |
-| 401  | OK      | ``ErrorDTO`` |        |
-| 404  | OK      | ``ErrorDTO`` |        |
+| Code | Message      | Body         | Header |
+|------|--------------|--------------|--------|
+| 200  | OK           | ``PartyDTO`` |        |
+| 401  | Unauthorized | ``ErrorDTO`` |        |
+| 404  | NotFound     | ``ErrorDTO`` |        |
 ---
 
 ### POST: /party
@@ -63,10 +100,10 @@
 ```
 **Response**:
 
-| Code | Message | Body         | Header            |
-|------|---------|--------------|-------------------|
-| 200  | OK      | ``PartyDTO`` | ``partyId: Long`` |
-| 401  | OK      | ``ErrorDTO`` |                   |
+| Code | Message      | Body         | Header            |
+|------|--------------|--------------|-------------------|
+| 200  | OK           | ``PartyDTO`` | ``partyId: Long`` |
+| 401  | Unauthorized | ``ErrorDTO`` |                   |
 _____
 ### POST: /party/{id}/edit
 
@@ -85,12 +122,12 @@ _____
 ```
 **Response**:
 
-| Code | Message | Body         | Header |
-|------|---------|--------------|--------|
-| 200  | OK      | ``PartyDTO`` |        |
-| 401  | OK      | ``ErrorDTO`` |        |
-| 403  | OK      | ``ErrorDTO`` |        |
-| 404  | OK      | ``ErrorDTO`` |        |
+| Code | Message      | Body         | Header |
+|------|--------------|--------------|--------|
+| 200  | OK           | ``PartyDTO`` |        |
+| 401  | Unauthorized | ``ErrorDTO`` |        |
+| 403  | Forbidden    | ``ErrorDTO`` |        |
+| 404  | NotFound     | ``ErrorDTO`` |        |
 ---
 
 ## Members
@@ -108,12 +145,12 @@ _____
 ```
 **Response**:
 
-| Code | Message | Body          | Header |
-|------|---------|---------------|--------|
-| 200  | OK      | ``MemberDTO`` |        |
-| 401  | OK      | ``ErrorDTO``  |        |
-| 403  | OK      | ``ErrorDTO``  |        |
-| 404  | OK      | ``ErrorDTO``  |        |
+| Code | Message      | Body          | Header |
+|------|--------------|---------------|--------|
+| 200  | OK           | ``MemberDTO`` |        |
+| 401  | Unauthorized | ``ErrorDTO``  |        |
+| 403  | Forbidden    | ``ErrorDTO``  |        |
+| 404  | NotFound     | ``ErrorDTO``  |        |
 ----
 
 ## Challenges
@@ -131,10 +168,10 @@ _____
 ```
 **Response**:
 
-| Code | Message | Body              | Header |
-|------|---------|-------------------|--------|
-| 200  | OK      | ``CategoriesDTO`` |        |
-| 401  | OK      | ``ErrorDTO``      |        |
+| Code | Message      | Body              | Header |
+|------|--------------|-------------------|--------|
+| 200  | OK           | ``CategoriesDTO`` |        |
+| 401  | Unauthorized | ``ErrorDTO``      |        |
 ----
 ### GET: /challenge
 
@@ -152,11 +189,11 @@ _____
 ```
 **Response**:
 
-| Code | Message | Body             | Header |
-|------|---------|------------------|--------|
-| 200  | OK      | ``ChallengeDTO`` |        |
-| 400  | OK      | ``ErrorDTO``     |        |
-| 401  | OK      | ``ErrorDTO``     |        |
+| Code | Message      | Body             | Header |
+|------|--------------|------------------|--------|
+| 200  | OK           | ``ChallengeDTO`` |        |
+| 400  | BadRequest   | ``ErrorDTO``     |        |
+| 401  | Unauthorized | ``ErrorDTO``     |        |
 ----
 ### PUT: /challengeResult
 
@@ -175,9 +212,9 @@ _____
 ```
 **Response**:
 
-| Code | Message | Body           | Header |
-|------|---------|----------------|--------|
-| 200  | OK      | ``PointsDTO``  |        |
-| 400  | OK      | ``ErrorDTO``   |        |
-| 401  | OK      | ``ErrorDTO``   |        |
-| 403  | OK      | ``ErrorDTO``   |        |
+| Code | Message      | Body           | Header |
+|------|--------------|----------------|--------|
+| 200  | OK           | ``PointsDTO``  |        |
+| 400  | BadRequest   | ``ErrorDTO``   |        |
+| 401  | Unauthorized | ``ErrorDTO``   |        |
+| 403  | Forbidden    | ``ErrorDTO``   |        |

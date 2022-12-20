@@ -14,6 +14,7 @@ import vsapp.controllers.TokenController
 import vsapp.controllers.UserController
 import vsapp.model.dtos.ErrorDTO
 import vsapp.model.dtos.LoginUserDTO
+import vsapp.model.dtos.SignInDTO
 
 /**
  * Configure all routes that corresponds to /user.
@@ -43,6 +44,19 @@ fun Route.userRoute() {
                 val userId = principal!!.payload.getClaim("userId").asLong()
 
                 call.respond(userController.getUser(userId)!!)
+            }
+        }
+        post("/register") {
+            try {
+                val signedUser = userController.signIn(call.receive<SignInDTO>())
+                if(signedUser != null){
+                    call.response.headers.append("Authentication", tokenController.generateJWTToken(signedUser))
+                    call.respond(signedUser)
+                } else {
+                    call.respond(HttpStatusCode(409, "Conflict"), ErrorDTO("Usuario o email en uso."))
+                }
+            } catch(e: BadRequestException) {
+                call.respond(HttpStatusCode(400, "BadRequest"), ErrorDTO("Body needs to have a user, a password and a email."))
             }
         }
     }

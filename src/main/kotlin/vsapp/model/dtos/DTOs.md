@@ -1,10 +1,18 @@
 # DTOs
 
-### UserLoginDTO
+### LoginUserDTO
 ```json
 {
   "user": "string",
   "password": "string"
+}
+```
+### UserRegisterDTO
+```json
+{
+  "user": "string",
+  "password": "string",
+  "email": "string"
 }
 ```
 ### UserDTO
