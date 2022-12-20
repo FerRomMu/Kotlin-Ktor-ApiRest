@@ -28,12 +28,11 @@ fun Route.userRoute() {
         post("/login") {
             try {
                 val login = userController.login(call.receive<LoginUserDTO>())
-                if(login != null){
-                    call.response.headers.append("Authentication", tokenController.generateJWTToken(login))
-                    call.respond(login)
-                } else {
+                if(login == null){
                     call.respond(ErrorDTO("Wrong user or password."))
                 }
+                call.response.headers.append("Authentication", tokenController.generateJWTToken(login!!))
+                call.respond(login)
             } catch(e: BadRequestException) {
                 call.respond(HttpStatusCode(400, "BadRequest"), ErrorDTO("Body needs to have a user and a password."))
             }
@@ -49,12 +48,11 @@ fun Route.userRoute() {
         post("/register") {
             try {
                 val signedUser = userController.signIn(call.receive<SignInDTO>())
-                if(signedUser != null){
-                    call.response.headers.append("Authentication", tokenController.generateJWTToken(signedUser))
-                    call.respond(signedUser)
-                } else {
+                if(signedUser == null){
                     call.respond(HttpStatusCode(409, "Conflict"), ErrorDTO("Usuario o email en uso."))
                 }
+                call.response.headers.append("Authentication", tokenController.generateJWTToken(signedUser!!))
+                call.respond(signedUser)
             } catch(e: BadRequestException) {
                 call.respond(HttpStatusCode(400, "BadRequest"), ErrorDTO("Body needs to have a user, a password and a email."))
             }

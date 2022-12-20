@@ -81,6 +81,7 @@ Authorization: header
 |------|--------------|--------------|--------|
 | 200  | OK           | ``PartyDTO`` |        |
 | 401  | Unauthorized | ``ErrorDTO`` |        |
+| 403  | Forbidden    | ``ErrorDTO`` |        |
 | 404  | NotFound     | ``ErrorDTO`` |        |
 ---
 
@@ -103,9 +104,10 @@ Authorization: header
 | Code | Message      | Body         | Header            |
 |------|--------------|--------------|-------------------|
 | 200  | OK           | ``PartyDTO`` | ``partyId: Long`` |
+| 400  | BadRequest   | ``ErrorDTO`` |                   |
 | 401  | Unauthorized | ``ErrorDTO`` |                   |
 _____
-### POST: /party/{id}/edit
+### PUT: /party/{id}/edit
 
 **Params**:
 - id: Path
@@ -125,6 +127,7 @@ _____
 | Code | Message      | Body         | Header |
 |------|--------------|--------------|--------|
 | 200  | OK           | ``PartyDTO`` |        |
+| 400  | BadRequest   | ``ErrorDTO`` |        |
 | 401  | Unauthorized | ``ErrorDTO`` |        |
 | 403  | Forbidden    | ``ErrorDTO`` |        |
 | 404  | NotFound     | ``ErrorDTO`` |        |
