@@ -7,7 +7,7 @@ import vsapp.exceptions.WrongLoginException
 import vsapp.model.dtos.LoginUserDTO
 import vsapp.model.dtos.PartyDTO
 import vsapp.model.dtos.UserDTO
-import vsapp.service.data.AppSystem
+import vsapp.repository.AppSystem
 import kotlin.test.assertEquals
 
 class UserControllerTest {
