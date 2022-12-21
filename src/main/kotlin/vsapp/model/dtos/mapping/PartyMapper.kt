@@ -5,10 +5,10 @@ import vsapp.model.dtos.PartyDTO
 
 class PartyMapper {
     fun toDTO(party: Party): PartyDTO {
-        TODO("falta")
+        return PartyDTO(party.order, party.family, party.relations)
     }
 
     fun fromDTO(partyDTO: PartyDTO): Party {
-        TODO()
+        return Party(null,null,partyDTO.order,partyDTO.family,partyDTO.relations)
     }
 }
