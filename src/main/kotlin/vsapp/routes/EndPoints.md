@@ -61,6 +61,24 @@ Authorization: header
 | 400  | BadRequest | ``ErrorDTO``         |                          |
 | 409  | Conflict   | ``ErrorDTO``         |                          |
 ----
+### DELETE: user/delete
+
+**Params**:
+
+Authorization: header
+
+**Body**:
+
+```json
+{}
+```
+**Response**:
+
+| Code | Message      | Body         | Header |
+|------|--------------|--------------|--------|
+| 200  | OK           |              |        |
+| 401  | Unauthorized | ``ErrorDTO`` |        |
+----
 ## Party
 
 ----
@@ -132,7 +150,27 @@ _____
 | 403  | Forbidden    | ``ErrorDTO`` |        |
 | 404  | NotFound     | ``ErrorDTO`` |        |
 ---
+### DELETE: party/{id}/delete
 
+**Params**:
+
+- Authorization: header
+- id: Path
+
+**Body**:
+
+```json
+{}
+```
+**Response**:
+
+| Code | Message      | Body         | Header |
+|------|--------------|--------------|--------|
+| 200  | OK           |              |        |
+| 401  | Unauthorized | ``ErrorDTO`` |        |
+| 403  | Forbidden    | ``ErrorDTO`` |        |
+| 404  | NotFound     | ``ErrorDTO`` |        |
+----
 ## Members
 
 ---
