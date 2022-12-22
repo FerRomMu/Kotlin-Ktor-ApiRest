@@ -14,7 +14,7 @@ class UserServiceImpl: UserService {
         return AppSystem.usersById[id]
     }
 
-    override fun signIn(user: String, password: String, email: String): User? {
+    override fun signUp(user: String, password: String, email: String): User? {
         return AppSystem.register(user,password,email)
     }
 }

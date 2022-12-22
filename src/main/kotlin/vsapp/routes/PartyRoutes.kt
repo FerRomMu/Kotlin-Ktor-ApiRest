@@ -24,11 +24,12 @@ fun Route.partyRoutes() {
                 val userId = call.principal<JWTPrincipal>()!!.payload.getClaim("userId").asLong()
                 try {
                     val party = controller.getParty(call.parameters["id"]!!.toLong(), userId)
-                    call.respond(party)
+                    if(party == null) {
+                        call.respond(HttpStatusCode(404, "NotFound"), ErrorDTO("Not found party with given id."))
+                    }
+                    call.respond(party!!)
                 } catch (e: ForbiddenPartyException){
                     call.respond(HttpStatusCode(403, "Forbidden"), ErrorDTO("Invalid party for this user."))
-                } catch (e: NotFoundPartyException){
-                    call.respond(HttpStatusCode(404, "NotFound"), ErrorDTO(e.message))
                 }
             }
             post(){
@@ -38,7 +39,7 @@ fun Route.partyRoutes() {
                     call.respond(HttpStatusCode(400, "BadRequest"), ErrorDTO("Malformed party."))
                 }
                 call.response.headers.append("partyId", id.toString())
-                call.respond(party)
+                call.respond(party!!)
             }
             put("/{id}/edit"){
                 val userId = call.principal<JWTPrincipal>()!!.payload.getClaim("userId").asLong()

@@ -50,7 +50,7 @@ fun Route.userRoute() {
         }
         post("/register") {
             try {
-                val signedUser = userController.signIn(call.receive<SignInDTO>())
+                val signedUser = userController.signUp(call.receive<SignInDTO>())
                 if(signedUser == null){
                     call.respond(HttpStatusCode(409, "Conflict"), ErrorDTO("Usuario o email en uso."))
                 }
@@ -59,6 +59,9 @@ fun Route.userRoute() {
             } catch(e: BadRequestException) {
                 call.respond(HttpStatusCode(400, "BadRequest"), ErrorDTO("Body needs to have a user, a password and a email."))
             }
+        }
+        delete("/delete") {
+            
         }
     }
 }

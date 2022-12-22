@@ -22,5 +22,5 @@ interface UserService {
      * params: user, password and email of the new user to register.
      * returns: The user created if it has been registered or null if not.
      */
-    fun signIn(user: String, password: String, email: String): User?
+    fun signUp(user: String, password: String, email: String): User?
 }

@@ -30,11 +30,17 @@ class UserController(private val userMapper: UserMapper,
     }
 
     /**
-     * Try to sign in a new user and returns the UserDTO for that new user.
+     * Try to sign up a new user and returns the UserDTO for that new user.
      * param: data has the user, password and email for the user to signin.
      * returns: UserDTO of the register user or null if it was not possible.
      */
-    fun signIn(data: SignInDTO): UserDTO? {
-        return userMapper.toDTO(service.signIn(data.user, data.password, data.email))
+    fun signUp(data: SignInDTO): UserDTO? {
+        return userMapper.toDTO(service.signUp(data.user, data.password, data.email))
     }
+
+    /**
+     * Deletes a user if possible.
+     * param: the id of the user to delete.
+     * returns:
+     */
 }

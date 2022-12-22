@@ -1,7 +1,6 @@
 package vsapp.controllers
 
 import org.junit.Test
-import org.koin.ktor.ext.inject
 import vsapp.model.dtos.LoginUserDTO
 import vsapp.model.dtos.PartyDTO
 import vsapp.model.dtos.SignInDTO
@@ -41,15 +40,15 @@ class UserControllerTest {
 
     @Test
     fun `si trato de registrar un usuario valido, se registra y puedo recuperarlo`() {
-        val newUser = userController.signIn(SignInDTO("fafafa", "12324", "fafafa@fa.com"))
+        val newUser = userController.signUp(SignInDTO("fafafa", "12324", "fafafa@fa.com"))
         assertEquals(newUser, userController.getUser(newUser!!.id))
     }
 
     @Test
     fun `si trato de registrar a alguien con un mail o username invalido no se registra`() {
-        var newUser = userController.signIn(SignInDTO("a", "fdakad", "fafafa@fa.com"))
+        var newUser = userController.signUp(SignInDTO("a", "fdakad", "fafafa@fa.com"))
         assertEquals(newUser, null)
-        newUser = userController.signIn(SignInDTO("fafafa", "vafda", "a@a"))
+        newUser = userController.signUp(SignInDTO("fafafa", "vafda", "a@a"))
         assertEquals(newUser, null)
     }
 }

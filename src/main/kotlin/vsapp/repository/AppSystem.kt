@@ -1,5 +1,6 @@
 package vsapp.repository
 
+import vsapp.model.Party
 import vsapp.model.User
 import vsapp.model.dtos.PartyDTO
 import vsapp.model.dtos.UserDTO
@@ -11,10 +12,16 @@ import vsapp.service.UserService
 object AppSystem {
 
     var nextId = 3L
+    var nextPartyId = 1L
 
     fun getId(): Long {
         nextId++
         return nextId - 1L
+    }
+
+    fun getPartyId(): Long {
+        nextPartyId++
+        return nextPartyId - 1L
     }
 
     val idOf: MutableMap<Pair<String, String>, Long> = mutableMapOf(
@@ -23,11 +30,16 @@ object AppSystem {
         Pair("c", "c") to 2L
     )
 
-    val unaParty = PartyDTO(listOf("fafafa","fefefe"),listOf(), listOf())
+    val unaParty = Party(0L, 0L, listOf("fafafa","fefefe"),listOf(), listOf())
+
     val usersById: MutableMap<Long, User> = mutableMapOf(
         0L to User(0,"a",listOf<Long>(),"a@a", unaParty),
-        1L to User(1,"b",listOf<Long>(),"@bb", unaParty),
-        2L to User(2,"c",listOf<Long>(),"c@c", unaParty)
+        1L to User(1,"b",listOf<Long>(),"@bb", null),
+        2L to User(2,"c",listOf<Long>(),"c@c", null)
+    )
+
+    val partyById: MutableMap<Long, Party> = mutableMapOf(
+        0L to unaParty
     )
 
     fun register(user: String, password: String, email: String): User? {
@@ -38,5 +50,10 @@ object AppSystem {
         idOf[Pair(user,password)] = newUser.id
         usersById[newUser.id] = newUser
         return newUser
+    }
+
+    fun createParty(party: Party): Party {
+        partyById[getPartyId()] = party
+        return party
     }
 }
