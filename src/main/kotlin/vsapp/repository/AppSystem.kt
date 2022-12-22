@@ -23,10 +23,11 @@ object AppSystem {
         Pair("c", "c") to 2L
     )
 
+    val unaParty = PartyDTO(listOf("fafafa","fefefe"),listOf(), listOf())
     val usersById: MutableMap<Long, User> = mutableMapOf(
-        0L to User(0,"a",listOf<Long>(),"a@a", PartyDTO("holanda")),
-        1L to User(1,"b",listOf<Long>(),"@bb", PartyDTO("holanda")),
-        2L to User(2,"c",listOf<Long>(),"c@c", PartyDTO("holanda"))
+        0L to User(0,"a",listOf<Long>(),"a@a", unaParty),
+        1L to User(1,"b",listOf<Long>(),"@bb", unaParty),
+        2L to User(2,"c",listOf<Long>(),"c@c", unaParty)
     )
 
     fun register(user: String, password: String, email: String): User? {

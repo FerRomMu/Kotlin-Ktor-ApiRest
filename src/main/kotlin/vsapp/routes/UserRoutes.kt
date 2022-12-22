@@ -10,18 +10,21 @@ import io.ktor.server.plugins.*
 import io.ktor.server.request.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
+import org.koin.ktor.ext.inject
+
 import vsapp.controllers.TokenController
 import vsapp.controllers.UserController
 import vsapp.model.dtos.ErrorDTO
 import vsapp.model.dtos.LoginUserDTO
 import vsapp.model.dtos.SignInDTO
 
+
 /**
  * Configure all routes that corresponds to /user.
  */
 fun Route.userRoute() {
 
-    val userController = UserController()
+    val userController: UserController by inject()
     val tokenController = TokenController(HoconApplicationConfig(ConfigFactory.load()))
 
     route("/user") {

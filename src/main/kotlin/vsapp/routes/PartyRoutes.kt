@@ -7,6 +7,7 @@ import io.ktor.server.auth.jwt.*
 import io.ktor.server.request.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
+import org.koin.ktor.ext.inject
 import vsapp.controllers.PartyController
 import vsapp.exceptions.ForbiddenPartyException
 import vsapp.exceptions.NotFoundPartyException
@@ -15,7 +16,7 @@ import vsapp.model.dtos.PartyDTO
 
 fun Route.partyRoutes() {
 
-    val controller = PartyController()
+    val controller: PartyController by inject()
 
     route("party"){
         authenticate {

@@ -4,12 +4,12 @@ import vsapp.model.dtos.LoginUserDTO
 import vsapp.model.dtos.SignInDTO
 import vsapp.model.dtos.UserDTO
 import vsapp.model.dtos.mapping.UserMapper
+import vsapp.service.UserService
 import vsapp.service.UserServiceImpl
 
-class UserController() {
-
-    private val userMapper = UserMapper()
-    private val service = UserServiceImpl()
+class UserController(private val userMapper: UserMapper,
+                     private val service: UserService
+) {
 
     /**
      * Checks the given user to exists and returns his DTO.

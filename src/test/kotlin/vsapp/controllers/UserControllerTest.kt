@@ -1,15 +1,19 @@
 package vsapp.controllers
 
 import org.junit.Test
+import org.koin.ktor.ext.inject
 import vsapp.model.dtos.LoginUserDTO
 import vsapp.model.dtos.PartyDTO
 import vsapp.model.dtos.SignInDTO
 import vsapp.model.dtos.UserDTO
+import vsapp.model.dtos.mapping.UserMapper
+import vsapp.service.UserServiceImpl
 import kotlin.test.assertEquals
 
 class UserControllerTest {
-    private val userController = UserController()
-    private val testUser = UserDTO(0,"a",listOf<Long>(),"a@a", PartyDTO("holanda"))
+    private val userController: UserController = UserController(UserMapper(), UserServiceImpl())
+    private val testParty = PartyDTO(listOf("fafafa","fefefe"),listOf(), listOf())
+    private val testUser = UserDTO(0,"a",listOf<Long>(),"a@a", testParty)
 
     @Test
     fun `si el usuario es valido al loguear obtengo su DTO`() {
