@@ -10,7 +10,7 @@ import io.ktor.server.routing.*
 import org.koin.ktor.ext.inject
 import vsapp.controllers.PartyController
 import vsapp.exceptions.ForbiddenPartyException
-import vsapp.exceptions.NotFoundPartyException
+import vsapp.exceptions.MalformedPartyException
 import vsapp.model.dtos.ErrorDTO
 import vsapp.model.dtos.PartyDTO
 
@@ -29,31 +29,35 @@ fun Route.partyRoutes() {
                     }
                     call.respond(party!!)
                 } catch (e: ForbiddenPartyException){
-                    call.respond(HttpStatusCode(403, "Forbidden"), ErrorDTO("Invalid party for this user."))
+                    call.respond(HttpStatusCode(403, "Forbidden"), ErrorDTO(e.message))
                 }
             }
             post(){
                 val userId = call.principal<JWTPrincipal>()!!.payload.getClaim("userId").asLong()
-                val (id, party) = controller.createParty(call.receive<PartyDTO>(), userId)
-                if (party == null){
-                    call.respond(HttpStatusCode(400, "BadRequest"), ErrorDTO("Malformed party."))
+                try {
+                    val (id, party) = controller.createParty(call.receive<PartyDTO>(), userId)
+                    call.response.headers.append("partyId", id.toString())
+                    call.respond(party!!)
+                } catch(e: MalformedPartyException){
+                    call.respond(HttpStatusCode(400, "BadRequest"), ErrorDTO(e.message))
                 }
-                call.response.headers.append("partyId", id.toString())
-                call.respond(party!!)
             }
             put("/{id}/edit"){
                 val userId = call.principal<JWTPrincipal>()!!.payload.getClaim("userId").asLong()
                 try {
-                    val party = controller.editParty(call.receive<PartyDTO>(), userId)
+                    val party = controller.editParty(call.receive<PartyDTO>(), call.parameters["id"]!!.toLong(), userId)
                     if (party == null) {
-                        call.respond(HttpStatusCode(400, "BadRequest"), ErrorDTO("Malformed party."))
+                        call.respond(HttpStatusCode(404, "NotFound"), ErrorDTO("Not found party with given id."))
                     }
-                    call.respond(party)
+                    call.respond(party!!)
                 } catch (e: ForbiddenPartyException){
-                    call.respond(HttpStatusCode(403, "Forbidden"), ErrorDTO("Invalid party for this user."))
-                } catch (e: NotFoundPartyException){
-                    call.respond(HttpStatusCode(404, "NotFound"), ErrorDTO(e.message))
+                    call.respond(HttpStatusCode(403, "Forbidden"), ErrorDTO(e.message))
+                } catch (e: MalformedPartyException){
+                    call.respond(HttpStatusCode(400, "BadRequest"), ErrorDTO(e.message))
                 }
+            }
+            delete("/{id}/delete"){
+                TODO()
             }
         }
     }

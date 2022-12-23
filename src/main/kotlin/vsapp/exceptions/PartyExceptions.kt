@@ -1,4 +1,4 @@
 package vsapp.exceptions
 
-class ForbiddenPartyException(private val msg: String): Exception(msg)
-class NotFoundPartyException(private val msg: String): Exception(msg)
+class ForbiddenPartyException(): Exception("Invalid party for this user.")
+class MalformedPartyException(): Exception("Given party it's invalid.")

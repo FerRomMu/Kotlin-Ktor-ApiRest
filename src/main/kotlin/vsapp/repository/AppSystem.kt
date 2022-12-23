@@ -56,4 +56,9 @@ object AppSystem {
         partyById[getPartyId()] = party
         return party
     }
+
+    fun editParty(party: Party): Party {
+        partyById[party.id!!] = party
+        return party
+    }
 }

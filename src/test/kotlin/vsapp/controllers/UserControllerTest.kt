@@ -5,12 +5,13 @@ import vsapp.model.dtos.LoginUserDTO
 import vsapp.model.dtos.PartyDTO
 import vsapp.model.dtos.SignInDTO
 import vsapp.model.dtos.UserDTO
+import vsapp.model.dtos.mapping.PartyMapper
 import vsapp.model.dtos.mapping.UserMapper
 import vsapp.service.UserServiceImpl
 import kotlin.test.assertEquals
 
 class UserControllerTest {
-    private val userController: UserController = UserController(UserMapper(), UserServiceImpl())
+    private val userController: UserController = UserController(UserMapper(PartyMapper()), UserServiceImpl())
     private val testParty = PartyDTO(listOf("fafafa","fefefe"),listOf(), listOf())
     private val testUser = UserDTO(0,"a",listOf<Long>(),"a@a", testParty)
 
