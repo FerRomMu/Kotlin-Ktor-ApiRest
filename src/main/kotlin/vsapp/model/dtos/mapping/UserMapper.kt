@@ -1,7 +1,7 @@
-package vsapp.model.dtos.mapping;
+package vsapp.model.dtos.mapping
 
 import vsapp.model.User
-import vsapp.model.dtos.UserDTO;
+import vsapp.model.dtos.UserDTO
 
 class UserMapper (private val partyMapper: PartyMapper) {
 

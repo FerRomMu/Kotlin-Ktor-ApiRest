@@ -2,7 +2,6 @@ package vsapp.service
 
 import vsapp.model.PasswordUser
 import vsapp.model.User
-import vsapp.repository.mockDb.MockTables
 import vsapp.repository.UserDAO
 
 class UserServiceImpl(private val userDao: UserDAO): UserService {
@@ -17,12 +16,12 @@ class UserServiceImpl(private val userDao: UserDAO): UserService {
     }
 
     override fun signUp(user: String, password: String, email: String): User? {
-        val user = userDao.createUser(User(null,user,listOf(),email,null))
-        userDao.editPasswordUser(PasswordUser(user, password))
-        return user
+        val userMade = userDao.createUser(User(null,user,listOf(),email,null))
+        userDao.editPasswordUser(PasswordUser(userMade, password))
+        return userMade
     }
 
     override fun deleteUser(id: Long) {
-        MockTables.deleteUser(id)
+        userDao.deleteUser(id)
     }
 }

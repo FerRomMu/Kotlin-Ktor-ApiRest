@@ -7,7 +7,7 @@ import io.ktor.server.config.*
 import vsapp.model.dtos.UserDTO
 import java.util.*
 
-class TokenController(val config: HoconApplicationConfig) {
+class TokenController(private val config: HoconApplicationConfig) {
 
     val audience = config.property("jwt.audience").getString()
     val secret = config.property("jwt.secret").getString()

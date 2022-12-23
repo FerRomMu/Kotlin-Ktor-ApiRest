@@ -7,11 +7,12 @@ import vsapp.model.dtos.SignInDTO
 import vsapp.model.dtos.UserDTO
 import vsapp.model.dtos.mapping.PartyMapper
 import vsapp.model.dtos.mapping.UserMapper
+import vsapp.repository.mockDb.MockUserDAO
 import vsapp.service.UserServiceImpl
 import kotlin.test.assertEquals
 
 class UserControllerTest {
-    private val userController: UserController = UserController(UserMapper(PartyMapper()), UserServiceImpl())
+    private val userController: UserController = UserController(UserMapper(PartyMapper()), UserServiceImpl(MockUserDAO()))
     private val testParty = PartyDTO(listOf("fafafa","fefefe"),listOf(), listOf())
     private val testUser = UserDTO(0,"a",listOf<Long>(),"a@a", testParty)
 
@@ -29,7 +30,7 @@ class UserControllerTest {
 
     @Test
     fun `si el usuario existe al pedirlo lo recibo`() {
-        var result = userController.getUser(0L)
+        val result = userController.getUser(0L)
         assertEquals(result, testUser)
     }
 
