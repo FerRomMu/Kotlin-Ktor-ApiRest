@@ -1,6 +1,6 @@
 package vsapp.service
 
-import vsapp.model.PasswordUser
+import vsapp.model.dtos.PasswordUserDTO
 import vsapp.model.User
 import vsapp.repository.UserDAO
 
@@ -17,7 +17,7 @@ class UserServiceImpl(private val userDao: UserDAO): UserService {
 
     override fun signUp(user: String, password: String, email: String): User? {
         val userMade = userDao.createUser(User(null,user,listOf(),email,null))
-        userDao.editPasswordUser(PasswordUser(userMade, password))
+        userDao.editPasswordUser(PasswordUserDTO(userMade, password))
         return userMade
     }
 

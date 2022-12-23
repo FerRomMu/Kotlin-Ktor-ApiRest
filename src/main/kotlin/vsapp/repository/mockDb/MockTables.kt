@@ -1,7 +1,6 @@
 package vsapp.repository.mockDb
 
 import vsapp.model.Party
-import vsapp.model.PasswordUser
 import vsapp.model.User
 
 /**

@@ -7,7 +7,7 @@
   "password": "string"
 }
 ```
-### UserRegisterDTO
+### SignInDTO
 ```json
 {
   "user": "string",
@@ -39,19 +39,17 @@
   "points": "Int"
 }
 ```
-### SecretDTO
+### MemberSimplifiedDTO
 ```json
 {
-  "idMember": "Long",
-  "code": "Long",
-  "textData": "String",
-  "option": "Int"
+  "id": "Long",
+  "name": "string"
 }
 ```
 ### ChallengeDTO
 ```json
 {
-  "code" : "Long",
+  "id" : "Long",
   "title" : "string",
   "body" : "string",
   "options": ["string"],
@@ -63,16 +61,24 @@
 ```json
 {
   "partyId": "Long",
-  "code" : "Long",
+  "id" : "Long",
   "points": "Int",
   "acceptedBy": [{ "name": "string", "id": "Long" }],
-  "rejectedBy": [{ "name": "string", "id": "Long" }]
+  "rejectedBy": [{ "name": "string", "id": "Long" }],
+  "option": "String?"
 }
 ```
 ### CategoriesDTO
 ```json
 {
   "categories": [{"name": "string", "description": "string"}]
+}
+```
+### CategoryDTO
+```json
+{
+  "name": "string", 
+  "description": "string"
 }
 ```
 ### PointsDTO

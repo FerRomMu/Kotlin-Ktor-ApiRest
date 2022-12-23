@@ -1,6 +1,6 @@
 package vsapp.repository.mockDb
 
-import vsapp.model.PasswordUser
+import vsapp.model.dtos.PasswordUserDTO
 import vsapp.model.User
 import vsapp.repository.UserDAO
 
@@ -21,7 +21,7 @@ class MockUserDAO: UserDAO {
         return user
     }
 
-    override fun editPasswordUser(passwordUser: PasswordUser): PasswordUser {
+    override fun editPasswordUser(passwordUser: PasswordUserDTO): PasswordUserDTO {
         db.passwordsTable[passwordUser.user.user] = passwordUser.password
         return passwordUser
     }

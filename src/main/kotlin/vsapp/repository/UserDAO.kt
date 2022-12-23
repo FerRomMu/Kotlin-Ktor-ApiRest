@@ -1,6 +1,6 @@
 package vsapp.repository
 
-import vsapp.model.PasswordUser
+import vsapp.model.dtos.PasswordUserDTO
 import vsapp.model.User
 
 interface UserDAO {
@@ -22,7 +22,7 @@ interface UserDAO {
     /**
      * register the password of the user.
      */
-    fun editPasswordUser(passwordUser: PasswordUser): PasswordUser
+    fun editPasswordUser(passwordUser: PasswordUserDTO): PasswordUserDTO
 
     /**
      * deletes a user.
