@@ -21,6 +21,8 @@ interface UserService {
      * Register on the database a new user if possible and returns it.
      * params: user, password and email of the new user to register.
      * returns: The user created if it has been registered or null if not.
+     * throws: ConflictMailOrUserException if the email or username of the user to signup is
+     * already in use.
      */
     fun signUp(user: String, password: String, email: String): User?
 }

@@ -11,9 +11,9 @@ import io.ktor.server.request.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
 import org.koin.ktor.ext.inject
-
 import vsapp.controllers.TokenController
 import vsapp.controllers.UserController
+import vsapp.exceptions.ConflictMailOrUserException
 import vsapp.model.dtos.ErrorDTO
 import vsapp.model.dtos.LoginUserDTO
 import vsapp.model.dtos.SignInDTO
@@ -44,20 +44,22 @@ fun Route.userRoute() {
             get("/self") {
                 val principal = call.principal<JWTPrincipal>()
                 val userId = principal!!.payload.getClaim("userId").asLong()
-
-                call.respond(userController.getUser(userId)!!)
+                val user = userController.getUser(userId)
+                if (user == null) {
+                    call.respond(HttpStatusCode(404, "NotFound"), ErrorDTO("User not found, but it should have been."))
+                }
+                call.respond(user!!)
             }
         }
         post("/register") {
             try {
                 val signedUser = userController.signUp(call.receive<SignInDTO>())
-                if(signedUser == null){
-                    call.respond(HttpStatusCode(409, "Conflict"), ErrorDTO("Usuario o email en uso."))
-                }
                 call.response.headers.append("Authentication", tokenController.generateJWTToken(signedUser!!))
                 call.respond(signedUser)
             } catch(e: BadRequestException) {
                 call.respond(HttpStatusCode(400, "BadRequest"), ErrorDTO("Body needs to have a user, a password and a email."))
+            } catch(e: ConflictMailOrUserException) {
+                call.respond(HttpStatusCode(409, "Conflict"), ErrorDTO(e.message))
             }
         }
         delete("/delete") {

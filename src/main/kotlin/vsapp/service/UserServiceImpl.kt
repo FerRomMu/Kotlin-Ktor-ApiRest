@@ -9,7 +9,6 @@ class UserServiceImpl: UserService {
         return AppSystem.usersById[AppSystem.idOf[Pair(user,password)]]
     }
 
-
     override fun getUser(id: Long): User? {
         return AppSystem.usersById[id]
     }
