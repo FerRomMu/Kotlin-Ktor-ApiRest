@@ -9,6 +9,8 @@ import vsapp.controllers.PartyController
 import vsapp.controllers.UserController
 import vsapp.model.dtos.mapping.PartyMapper
 import vsapp.model.dtos.mapping.UserMapper
+import vsapp.repository.mockDb.MockPartyDAO
+import vsapp.repository.mockDb.MockUserDAO
 import vsapp.service.PartyService
 import vsapp.service.PartyServiceImpl
 
@@ -21,8 +23,8 @@ fun configureKoin(){
 val koinModule = module {
 
     //Services
-    single<UserService> { UserServiceImpl() }
-    single<PartyService> { PartyServiceImpl() }
+    single<UserService> { UserServiceImpl(MockUserDAO()) }
+    single<PartyService> { PartyServiceImpl(MockPartyDAO()) }
 
     //Mappers
     single { PartyMapper() }

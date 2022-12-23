@@ -1,9 +1,8 @@
 package vsapp.service
 
-import com.auth0.jwt.algorithms.Algorithm
 import vsapp.model.PasswordUser
 import vsapp.model.User
-import vsapp.repository.AppSystem
+import vsapp.repository.mockDb.MockTables
 import vsapp.repository.UserDAO
 
 class UserServiceImpl(private val userDao: UserDAO): UserService {
@@ -24,6 +23,6 @@ class UserServiceImpl(private val userDao: UserDAO): UserService {
     }
 
     override fun deleteUser(id: Long) {
-        AppSystem.deleteUser(id)
+        MockTables.deleteUser(id)
     }
 }
