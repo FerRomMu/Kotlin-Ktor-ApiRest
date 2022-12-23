@@ -25,4 +25,6 @@ interface UserService {
      * already in use.
      */
     fun signUp(user: String, password: String, email: String): User?
+
+    fun deleteUser(id: Long)
 }

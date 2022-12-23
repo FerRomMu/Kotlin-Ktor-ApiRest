@@ -61,4 +61,7 @@ object AppSystem {
         partyById[party.id!!] = party
         return party
     }
+
+    fun deleteUser(id: Long) {}
+    fun deleteParty(party: Party) {}
 }

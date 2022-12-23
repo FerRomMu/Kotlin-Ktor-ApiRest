@@ -25,7 +25,10 @@ class PartyServiceImpl: PartyService {
         return AppSystem.editParty(party)
     }
 
-    override fun deleteParty(party: Party) {
-        TODO("Not yet")
+    override fun deleteParty(id: Long, userId: Long): Boolean {
+        val party = AppSystem.partyById[id] ?: return false
+        if (userId != party.userId) { throw ForbiddenPartyException() }
+        AppSystem.deleteParty(party)
+        return true
     }
 }

@@ -46,7 +46,7 @@ class PartyController(private val mapper: PartyMapper,
      * Deletes a party with the given id.
      * params: The id of the party to be deleted and the user id of that party.
      */
-    fun delete(partyDTO: PartyDTO, userId: Long) {
-        TODO()
+    fun deleteParty(id: Long, userId: Long): Boolean {
+        return service.deleteParty(id, userId)
     }
 }

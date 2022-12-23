@@ -35,5 +35,5 @@ interface PartyService {
      * Deletes the given party if exists.
      * params: A party to be deleted.
      */
-    fun deleteParty(party: Party)
+    fun deleteParty(id: Long, userId: Long): Boolean
 }

@@ -50,6 +50,11 @@ fun Route.userRoute() {
                 }
                 call.respond(user!!)
             }
+            delete("/delete") {
+                val principal = call.principal<JWTPrincipal>()
+                userController.deleteUser(principal!!.payload.getClaim("userId").asLong())
+                call.respond(HttpStatusCode(200, "OK"))
+            }
         }
         post("/register") {
             try {
@@ -61,9 +66,6 @@ fun Route.userRoute() {
             } catch(e: ConflictMailOrUserException) {
                 call.respond(HttpStatusCode(409, "Conflict"), ErrorDTO(e.message))
             }
-        }
-        delete("/delete") {
-            
         }
     }
 }

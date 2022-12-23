@@ -57,7 +57,16 @@ fun Route.partyRoutes() {
                 }
             }
             delete("/{id}/delete"){
-                TODO()
+                val userId = call.principal<JWTPrincipal>()!!.payload.getClaim("userId").asLong()
+                try {
+                    if(controller.deleteParty(call.parameters["id"]!!.toLong(), userId)){
+                        call.respond(HttpStatusCode(200, "OK"))
+                    } else {
+                        call.respond(HttpStatusCode(404, "NotFound"), ErrorDTO("Not found party with given id."))
+                    }
+                } catch(e: ForbiddenPartyException){
+                    call.respond(HttpStatusCode(403, "Forbidden"), ErrorDTO(e.message))
+                }
             }
         }
     }

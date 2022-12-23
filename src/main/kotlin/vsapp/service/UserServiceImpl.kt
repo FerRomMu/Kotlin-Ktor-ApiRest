@@ -16,4 +16,8 @@ class UserServiceImpl: UserService {
     override fun signUp(user: String, password: String, email: String): User? {
         return AppSystem.register(user,password,email)
     }
+
+    override fun deleteUser(id: Long) {
+        AppSystem.deleteUser(id)
+    }
 }
