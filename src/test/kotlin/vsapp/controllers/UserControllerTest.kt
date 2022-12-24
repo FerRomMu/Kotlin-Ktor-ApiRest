@@ -1,6 +1,7 @@
 package vsapp.controllers
 
 import io.mockk.every
+import io.mockk.justRun
 import io.mockk.mockk
 import io.mockk.verify
 import org.junit.Test
@@ -32,6 +33,8 @@ class UserControllerTest {
         every { mockService.signUp(eq("fafafa"),eq( "1234"), eq("fa@test.com")) } returns aUser
         every { mockService.signUp(neq("fafafa"),any(), any()) } returns null
         every { mockService.signUp(any(),any(), neq("fa@test.com")) } returns null
+
+        justRun { mockService.deleteUser(any()) }
 
         every { mockMapper.toDTO(eq(aUser)) } returns(aUserDTO)
         every { mockMapper.toDTO(isNull()) } returns(null)
@@ -79,5 +82,11 @@ class UserControllerTest {
         newUser = userController.signUp(SignInDTO("fafafa", "1234", "a@a"))
         assertEquals(newUser, null)
         verify(exactly = 2) { mockService.signUp(any(), any(), any()) }
+    }
+
+    @Test
+    fun `si borro a un user llamo al delete del service`() {
+        userController.deleteUser(0L)
+        verify(exactly = 1) { mockService.deleteUser(0L) }
     }
 }
