@@ -1,25 +1,45 @@
 package vsapp.controllers
 
+import io.mockk.every
+import io.mockk.mockk
 import org.junit.Test
+import vsapp.model.User
 import vsapp.model.dtos.LoginUserDTO
-import vsapp.model.dtos.PartyDTO
 import vsapp.model.dtos.SignInDTO
 import vsapp.model.dtos.UserDTO
-import vsapp.model.dtos.mapping.PartyMapper
 import vsapp.model.dtos.mapping.UserMapper
-import vsapp.repository.mockDb.MockUserDAO
-import vsapp.service.UserServiceImpl
+import vsapp.service.UserService
+import kotlin.test.BeforeTest
 import kotlin.test.assertEquals
 
 class UserControllerTest {
-    private val userController: UserController = UserController(UserMapper(PartyMapper()), UserServiceImpl(MockUserDAO()))
-    private val testParty = PartyDTO(listOf("fafafa","fefefe"),listOf(), listOf())
-    private val testUser = UserDTO(0,"a",listOf<Long>(),"a@a", testParty)
+
+    private val mockService = mockk<UserService>()
+    private val mockMapper = mockk<UserMapper>()
+    private val userController = UserController(mockMapper, mockService)
+    private val aUser = mockk<User>()
+    private val aUserDTO = mockk<UserDTO>()
+
+    @BeforeTest
+    fun setup() {
+        every { mockService.login(eq("a"), eq("a")) } returns aUser
+        every { mockService.login(eq("a"), neq("a")) } returns null
+
+        every { mockService.getUser(eq(0L)) } returns aUser
+        every { mockService.getUser(neq(0L)) } returns null
+
+        every { mockService.signUp(eq("fafafa"),eq( "1234"), eq("fa@test.com")) } returns aUser
+        every { mockService.signUp(neq("fafafa"),any(), any()) } returns null
+        every { mockService.signUp(any(),any(), neq("fa@test.com")) } returns null
+
+        every { mockMapper.toDTO(eq(aUser)) } returns(aUserDTO)
+        every { mockMapper.toDTO(isNull()) } returns(null)
+    }
 
     @Test
     fun `si el usuario es valido al loguear obtengo su DTO`() {
         val result = userController.login(LoginUserDTO("a", "a"))
-        assertEquals(result, testUser)
+        assertEquals(result, aUserDTO)
     }
 
     @Test
@@ -31,7 +51,7 @@ class UserControllerTest {
     @Test
     fun `si el usuario existe al pedirlo lo recibo`() {
         val result = userController.getUser(0L)
-        assertEquals(result, testUser)
+        assertEquals(result, aUserDTO)
     }
 
     @Test
@@ -41,16 +61,16 @@ class UserControllerTest {
     }
 
     @Test
-    fun `si trato de registrar un usuario valido, se registra y puedo recuperarlo`() {
-        val newUser = userController.signUp(SignInDTO("fafafa", "12324", "fafafa@fa.com"))
-        assertEquals(newUser, userController.getUser(newUser!!.id))
+    fun `si trato de registrar un usuario valido, se registra y me lo devuelve`() {
+        val newUser = userController.signUp(SignInDTO("fafafa", "1234", "fa@test.com"))
+        assertEquals(newUser, aUserDTO)
     }
 
     @Test
     fun `si trato de registrar a alguien con un mail o username invalido no se registra`() {
-        var newUser = userController.signUp(SignInDTO("a", "fdakad", "fafafa@fa.com"))
+        var newUser = userController.signUp(SignInDTO("a", "1234", "fa@test.com"))
         assertEquals(newUser, null)
-        newUser = userController.signUp(SignInDTO("fafafa", "vafda", "a@a"))
+        newUser = userController.signUp(SignInDTO("fafafa", "1234", "a@a"))
         assertEquals(newUser, null)
     }
 }

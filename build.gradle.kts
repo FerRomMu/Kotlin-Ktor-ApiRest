@@ -2,6 +2,7 @@ val ktor_version: String by project
 val kotlin_version: String by project
 val logback_version: String by project
 val koin_version: String by project
+val mockkVersion: String by project
 
 plugins {
     kotlin("jvm") version "1.7.22"
@@ -35,4 +36,6 @@ dependencies {
     implementation ("io.insert-koin:koin-logger-slf4j:$koin_version")
     testImplementation("io.ktor:ktor-server-tests-jvm:$ktor_version")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version")
+    testImplementation("io.mockk:mockk:$mockkVersion")
+
 }
