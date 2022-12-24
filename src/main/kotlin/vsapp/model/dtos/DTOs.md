@@ -18,17 +18,19 @@
 ### UserDTO
 ```json
 {
-  "user": "name",
+  "id": "Long",
+  "user": "String",
   "partiesIds": ["Longs"],
-  "lastParty": { "partyId": "Long", "party": "PartyDTO"}
+  "email": "String",
+  "lastParty": "Long"
 }
 ```
 ### PartyDTO
 ```json
 {
-  "order": [{ "name":"string", "genere":"string", "id": "Long" }],
-  "family": [["string"]],
-  "relationships": [{ "parejaA": "string", "parejaB": "string" }]
+  "order": ["MemberDTO"],
+  "family": [["MemberDTO"]],
+  "relations": ["RelationDTO"]
 }
 ```
 ### MemberDTO
@@ -36,6 +38,7 @@
 {
   "id": "Long",
   "name": "string",
+  "gender": "string",
   "points": "Int"
 }
 ```

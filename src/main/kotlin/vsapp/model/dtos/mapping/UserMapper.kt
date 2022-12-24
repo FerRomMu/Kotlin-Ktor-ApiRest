@@ -10,6 +10,6 @@ class UserMapper (private val partyMapper: PartyMapper) {
     }
 
     fun toDTO(user: User?): UserDTO? {
-        return if(user != null) { UserDTO(user.id!!, user.user, user.partiesIds, user.email, partyMapper.toDTO(user.lastParty)) } else { null }
+        return if(user != null) { UserDTO(user.id!!, user.user, user.partiesIds, user.email, user.lastParty) } else { null }
     }
 }

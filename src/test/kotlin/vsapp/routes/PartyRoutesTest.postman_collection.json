@@ -303,7 +303,7 @@
 							"});",
 							"pm.test(\"Response with user info\", function () {",
 							"    var jsonData = pm.response.json();",
-							"    pm.expect(jsonData.order).to.eq([{ \"name\":\"Fefefe\", \"genere\":\"M\" }, { \"name\":\"Fififi\", \"genere\":\"F\" }, { \"name\":\"Fafafa\", \"genere\":\"M\" }]);",
+							"    pm.expect(jsonData.order).to.eq([{ \"name\":\"Fefefe\", \"gender\":\"M\" }, { \"name\":\"Fififi\", \"gender\":\"F\" }, { \"name\":\"Fafafa\", \"gender\":\"M\" }]);",
 							"    pm.expect(jsonData.family).to.eq([[\"Fefefe\", \"Fififi\"]]);",
 							"    pm.expect(jsonData.relationships).to.eq([{ \"parejaA\": \"Fefefe\", \"parejaB\": \"Fafafa\" }]);",
 							"});"
@@ -323,7 +323,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"order\" : [{ \"name\":\"Fefefe\", \"genere\":\"M\" }, { \"name\":\"Fififi\", \"genere\":\"F\" }, { \"name\":\"Fafafa\", \"genere\":\"M\" }],\n  \"family\" : [[\"Fefefe\", \"Fififi\"]],\n  \"relationships\" : [{ \"parejaA\": \"Fefefe\", \"parejaB\": \"Fafafa\" }]\n}",
+					"raw": "{\n  \"order\" : [{ \"name\":\"Fefefe\", \"gender\":\"M\" }, { \"name\":\"Fififi\", \"gender\":\"F\" }, { \"name\":\"Fafafa\", \"gender\":\"M\" }],\n  \"family\" : [[\"Fefefe\", \"Fififi\"]],\n  \"relationships\" : [{ \"parejaA\": \"Fefefe\", \"parejaB\": \"Fafafa\" }]\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -372,7 +372,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"order\" : [{ \"name\":\"Fafafa\", \"genere\":\"M\" }, { \"name\":\"Fofofo\", \"genere\":\"F\" }, { \"name\":\"Fufufu\", \"genere\":\"M\" }],\n  \"family\" : [[\"Fafafa\"]],\n  \"relationships\" : [{ \"parejaA\": \"Fafafa\", \"parejaB\": \"Fufufu\" }]\n}",
+					"raw": "{\n  \"order\" : [{ \"name\":\"Fafafa\", \"gender\":\"M\" }, { \"name\":\"Fofofo\", \"gender\":\"F\" }, { \"name\":\"Fufufu\", \"gender\":\"M\" }],\n  \"family\" : [[\"Fafafa\"]],\n  \"relationships\" : [{ \"parejaA\": \"Fafafa\", \"parejaB\": \"Fufufu\" }]\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -421,7 +421,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"order\" : [{ \"name\":\"Fafafa\", \"genere\":\"M\" }, { \"name\":\"Fofofo\", \"genere\":\"F\" }, { \"name\":\"Fufufu\", \"genere\":\"M\" }],\n  \"family\" : [[\"Fafafa\", \"Fofofo\"]],\n  \"relationships\" : [{ \"parejaA\": \"Fafafa\", \"parejaB\": \"Fafafa\" }]\n}",
+					"raw": "{\n  \"order\" : [{ \"name\":\"Fafafa\", \"gender\":\"M\" }, { \"name\":\"Fofofo\", \"gender\":\"F\" }, { \"name\":\"Fufufu\", \"gender\":\"M\" }],\n  \"family\" : [[\"Fafafa\", \"Fofofo\"]],\n  \"relationships\" : [{ \"parejaA\": \"Fafafa\", \"parejaB\": \"Fafafa\" }]\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -470,7 +470,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"order\" : [{ \"name\":\"Fafafa\", \"genere\":\"M\" }],\n  \"family\" : [[\"Fafafa\", \"Fofofo\"]],\n  \"relationships\" : [{ \"parejaA\": \"Fafafa\", \"parejaB\": \"Fufufu\" }]\n}",
+					"raw": "{\n  \"order\" : [{ \"name\":\"Fafafa\", \"gender\":\"M\" }],\n  \"family\" : [[\"Fafafa\", \"Fofofo\"]],\n  \"relationships\" : [{ \"parejaA\": \"Fafafa\", \"parejaB\": \"Fufufu\" }]\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -519,7 +519,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"order\" : [{ \"name\":\"Fefefe\", \"genere\":\"M\" }, { \"name\":\"Fififi\", \"genere\":\"F\" }, { \"name\":\"Fafafa\", \"genere\":\"M\" }],\n  \"family\" : [[\"Fefefe\", \"Fififi\"]],\n  \"relationships\" : [{ \"parejaA\": \"Fefefe\", \"parejaB\": \"Fafafa\" }]\n}",
+					"raw": "{\n  \"order\" : [{ \"name\":\"Fefefe\", \"gender\":\"M\" }, { \"name\":\"Fififi\", \"gender\":\"F\" }, { \"name\":\"Fafafa\", \"gender\":\"M\" }],\n  \"family\" : [[\"Fefefe\", \"Fififi\"]],\n  \"relationships\" : [{ \"parejaA\": \"Fefefe\", \"parejaB\": \"Fafafa\" }]\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -568,7 +568,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"order\" : [{ \"name\":\"Fefefe\", \"genere\":\"M\" }, { \"name\":\"Fififi\", \"genere\":\"F\" }, { \"name\":\"Fafafa\", \"genere\":\"M\" }],\n  \"family\" : [[\"Fefefe\", \"Fififi\"]],\n  \"relationships\" : [{ \"parejaA\": \"Fefefe\", \"parejaB\": \"Fafafa\" }]\n}",
+					"raw": "{\n  \"order\" : [{ \"name\":\"Fefefe\", \"gender\":\"M\" }, { \"name\":\"Fififi\", \"gender\":\"F\" }, { \"name\":\"Fafafa\", \"gender\":\"M\" }],\n  \"family\" : [[\"Fefefe\", \"Fififi\"]],\n  \"relationships\" : [{ \"parejaA\": \"Fefefe\", \"parejaB\": \"Fafafa\" }]\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -617,7 +617,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"order\" : [{ \"name\":\"Fefefe\", \"genere\":\"M\" }, { \"name\":\"Fififi\", \"genere\":\"F\" }, { \"name\":\"Fafafa\", \"genere\":\"M\" }],\n  \"family\" : [[\"Fefefe\", \"Fefefe\"]],\n  \"relationships\" : [{ \"parejaA\": \"Fefefe\", \"parejaB\": \"Fafafa\" }]\n}",
+					"raw": "{\n  \"order\" : [{ \"name\":\"Fefefe\", \"gender\":\"M\" }, { \"name\":\"Fififi\", \"gender\":\"F\" }, { \"name\":\"Fafafa\", \"gender\":\"M\" }],\n  \"family\" : [[\"Fefefe\", \"Fefefe\"]],\n  \"relationships\" : [{ \"parejaA\": \"Fefefe\", \"parejaB\": \"Fafafa\" }]\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -652,7 +652,7 @@
 							"});",
 							"pm.test(\"Response with user info\", function () {",
 							"    var jsonData = pm.response.json();",
-							"    pm.expect(jsonData.order).to.eq([{ \"name\":\"Fafafa\", \"genere\":\"M\" }, { \"name\":\"Fofofo\", \"genere\":\"F\" }, { \"name\":\"Fufufu\", \"genere\":\"M\" }]);",
+							"    pm.expect(jsonData.order).to.eq([{ \"name\":\"Fafafa\", \"gender\":\"M\" }, { \"name\":\"Fofofo\", \"gender\":\"F\" }, { \"name\":\"Fufufu\", \"gender\":\"M\" }]);",
 							"    pm.expect(jsonData.family).to.eq([[\"Fafafa\", \"Fofofo\"]]);",
 							"    pm.expect(jsonData.relationships).to.eq([{ \"parejaA\": \"Fafafa\", \"parejaB\": \"Fufufu\" }]);",
 							"});",
@@ -675,7 +675,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"order\" : [{ \"name\":\"Fafafa\", \"genere\":\"M\" }, { \"name\":\"Fofofo\", \"genere\":\"F\" }, { \"name\":\"Fufufu\", \"genere\":\"M\" }],\n  \"family\" : [[\"Fafafa\", \"Fofofo\"]],\n  \"relationships\" : [{ \"parejaA\": \"Fafafa\", \"parejaB\": \"Fufufu\" }]\n}",
+					"raw": "{\n  \"order\" : [{ \"name\":\"Fafafa\", \"gender\":\"M\" }, { \"name\":\"Fofofo\", \"gender\":\"F\" }, { \"name\":\"Fufufu\", \"gender\":\"M\" }],\n  \"family\" : [[\"Fafafa\", \"Fofofo\"]],\n  \"relationships\" : [{ \"parejaA\": \"Fafafa\", \"parejaB\": \"Fufufu\" }]\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -722,7 +722,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"order\" : [{ \"name\":\"Fafafa\", \"genere\":\"M\" }, { \"name\":\"Fofofo\", \"genere\":\"F\" }, { \"name\":\"Fufufu\", \"genere\":\"M\" }],\n  \"family\" : [[\"Fafafa\"]],\n  \"relationships\" : [{ \"parejaA\": \"Fafafa\", \"parejaB\": \"Fufufu\" }]\n}",
+					"raw": "{\n  \"order\" : [{ \"name\":\"Fafafa\", \"gender\":\"M\" }, { \"name\":\"Fofofo\", \"gender\":\"F\" }, { \"name\":\"Fufufu\", \"gender\":\"M\" }],\n  \"family\" : [[\"Fafafa\"]],\n  \"relationships\" : [{ \"parejaA\": \"Fafafa\", \"parejaB\": \"Fufufu\" }]\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -769,7 +769,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"order\" : [{ \"name\":\"Fafafa\", \"genere\":\"M\" }, { \"name\":\"Fofofo\", \"genere\":\"F\" }, { \"name\":\"Fufufu\", \"genere\":\"M\" }],\n  \"family\" : [[\"Fafafa\", \"Fofofo\"]],\n  \"relationships\" : [{ \"parejaA\": \"Fafafa\", \"parejaB\": \"Fafafa\" }]\n}",
+					"raw": "{\n  \"order\" : [{ \"name\":\"Fafafa\", \"gender\":\"M\" }, { \"name\":\"Fofofo\", \"gender\":\"F\" }, { \"name\":\"Fufufu\", \"gender\":\"M\" }],\n  \"family\" : [[\"Fafafa\", \"Fofofo\"]],\n  \"relationships\" : [{ \"parejaA\": \"Fafafa\", \"parejaB\": \"Fafafa\" }]\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -816,7 +816,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"order\" : [{ \"name\":\"Fafafa\", \"genere\":\"M\" }],\n  \"family\" : [[\"Fafafa\", \"Fofofo\"]],\n  \"relationships\" : [{ \"parejaA\": \"Fafafa\", \"parejaB\": \"Fufufu\" }]\n}",
+					"raw": "{\n  \"order\" : [{ \"name\":\"Fafafa\", \"gender\":\"M\" }],\n  \"family\" : [[\"Fafafa\", \"Fofofo\"]],\n  \"relationships\" : [{ \"parejaA\": \"Fafafa\", \"parejaB\": \"Fufufu\" }]\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -863,7 +863,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"order\" : [{ \"name\":\"Fafafa\", \"genere\":\"M\" }],\n  \"family\" : [[\"Fafafa\", \"Fififi\"]],\n  \"relationships\" : [{ \"parejaA\": \"Fafafa\", \"parejaB\": \"Fufufu\" }]\n}",
+					"raw": "{\n  \"order\" : [{ \"name\":\"Fafafa\", \"gender\":\"M\" }],\n  \"family\" : [[\"Fafafa\", \"Fififi\"]],\n  \"relationships\" : [{ \"parejaA\": \"Fafafa\", \"parejaB\": \"Fufufu\" }]\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -910,7 +910,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"order\" : [{ \"name\":\"Fafafa\", \"genere\":\"M\" }],\n  \"family\" : [[\"Fafafa\", \"Fififi\"]],\n  \"relationships\" : [{ \"parejaA\": \"Fafafa\", \"parejaB\": \"Fufufu\" }]\n}",
+					"raw": "{\n  \"order\" : [{ \"name\":\"Fafafa\", \"gender\":\"M\" }],\n  \"family\" : [[\"Fafafa\", \"Fififi\"]],\n  \"relationships\" : [{ \"parejaA\": \"Fafafa\", \"parejaB\": \"Fufufu\" }]\n}",
 					"options": {
 						"raw": {
 							"language": "json"

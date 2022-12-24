@@ -7,5 +7,5 @@ class User(
     val user: String,
     val partiesIds: List<Long>,
     val email: String,
-    val lastParty: Party?
+    val lastParty: Long?
 )

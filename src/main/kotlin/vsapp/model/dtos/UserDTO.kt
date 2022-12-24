@@ -8,5 +8,5 @@ data class UserDTO(
     val user: String,
     val partiesIds: List<Long>,
     val email: String,
-    val lastParty: PartyDTO?
+    val lastParty: Long?
     )

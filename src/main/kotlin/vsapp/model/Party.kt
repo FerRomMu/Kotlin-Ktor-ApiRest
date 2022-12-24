@@ -3,9 +3,9 @@ package vsapp.model
 class Party (
     var id: Long?,
     var userId: Long?,
-    val order: List<String>,
-    val family: List<List<String>>,
-    val relations: List<Pair<String,String>>
+    val order: List<Member>,
+    val family: List<List<Long>>,
+    val relations: List<Pair<Long,Long>>
     ) {
     fun isValid(): Boolean { return true }
 }

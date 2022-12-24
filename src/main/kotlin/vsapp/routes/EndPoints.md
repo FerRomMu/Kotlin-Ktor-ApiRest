@@ -112,7 +112,7 @@ Authorization: header
 
 ```json
 {
-  "order" : [{ "name":"string", "genere":"string" }],
+  "order" : [{ "name":"string", "gender":"string" }],
   "family" : [["string"]],
   "relationships" : [{ "parejaA": "string", "parejaB": "string" }]
 }
@@ -135,7 +135,7 @@ _____
 
 ```json
 {
-  "order" : [{ "name":"string", "genere":"string" }],
+  "order" : [{ "name":"string", "gender":"string" }],
   "family" : [["string"]],
   "relationships" : [{ "parejaA": "string", "parejaB": "string" }]
 }
