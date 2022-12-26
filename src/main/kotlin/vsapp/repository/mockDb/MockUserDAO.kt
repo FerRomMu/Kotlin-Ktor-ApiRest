@@ -31,7 +31,7 @@ class MockUserDAO: UserDAO {
         db.usersTable.remove(id)
     }
 
-    override fun getHash(user: String): String {
-        return db.passwordsTable[user]!!
+    override fun getHash(user: String): String? {
+        return db.passwordsTable[user]
     }
 }

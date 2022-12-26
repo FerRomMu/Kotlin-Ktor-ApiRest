@@ -30,7 +30,7 @@ interface UserDAO {
     fun deleteUser(id: Long)
 
     /**
-     * Returns hash of the password of the given user
+     * Returns hash of the password of the given user if exists.
      */
-    fun getHash(user: String): String
+    fun getHash(user: String): String?
 }

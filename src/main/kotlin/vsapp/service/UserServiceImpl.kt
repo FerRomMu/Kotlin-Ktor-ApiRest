@@ -8,7 +8,7 @@ class UserServiceImpl(private val userDao: UserDAO): UserService {
 
     override fun login(user: String, password: String): User? {
         val hash = userDao.getHash(user)
-        return if (password == hash) { userDao.userByUsername(user) } else { null }
+        return if (hash != null && password == hash) { userDao.userByUsername(user) } else { null }
     }
 
     override fun getUser(id: Long): User? {
