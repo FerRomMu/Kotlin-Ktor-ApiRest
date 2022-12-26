@@ -34,6 +34,9 @@ interface PartyService {
     /**
      * Deletes the given party if exists.
      * params: A party to be deleted.
+     * returns: True if it was deleted or false if party does not exist.
+     * throws:
+     *      - ForbiddenPartyException if the party owner it's not the user of the given id.
      */
     fun deleteParty(id: Long, userId: Long): Boolean
 }
