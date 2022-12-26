@@ -37,5 +37,6 @@ dependencies {
     testImplementation("io.ktor:ktor-server-tests-jvm:$ktor_version")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version")
     testImplementation("io.mockk:mockk:$mockkVersion")
+    testImplementation("io.ktor:ktor-server-core-jvm:$ktor_version")
 
 }
