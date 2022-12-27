@@ -66,22 +66,35 @@ class UserServiceTest {
         assertEquals(user, userMock)
         verify(exactly = 1) { userDao.userByUsername(username) }
     }
-    /*
+
     @Test
     fun `getUser returns null if user does not exist`() {
+        //Setup
+        every { userDao.userById(1L) } returns null
         val userId = 1L
+
+        //Exercise
         val user = userService.getUser(userId)
-        assertTrue(user == null)
+
+        //Verify
+        assertNull(user)
+        verify(exactly = 1) { userDao.userById(1L) }
     }
 
     @Test
     fun `getUser returns user if exists`() {
+        //Setup
+        every { userDao.userById(1L) } returns userMock
         val userId = 1L
-        every { userDao.getUser(userId) } returns User(id = userId)
-        val user = userService.getUser(userId)
-        assertEquals(userId, user?.id)
-    }
 
+        //Exercise
+        val user = userService.getUser(userId)
+
+        //Verify
+        assertEquals(user, userMock)
+        verify(exactly = 1) { userDao.userById(1L) }
+    }
+/*
     @Test(expected = ConflictMailOrUserException::class)
     fun `signUp throws ConflictMailOrUserException if email or username is already in use`() {
         val username = "user"
