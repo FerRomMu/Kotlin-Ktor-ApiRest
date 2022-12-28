@@ -117,6 +117,8 @@ class UserServiceTest {
         //Setup
         every { userDao.isUserInUse("user") } returns false
         every { userDao.isMailInUse("email@example.com") } returns true
+        justRun { userDao.editPasswordUser(any()) }
+
         val username = "user"
         val password = "password"
         val email = "email@example.com"
@@ -131,6 +133,7 @@ class UserServiceTest {
         every { userDao.isUserInUse("user") } returns false
         every { userDao.isMailInUse("email@example.com") } returns false
         every { userDao.createUser(any()) } returns userMock
+        justRun { userDao.editPasswordUser(any()) }
         val username = "user"
         val password = "password"
         val email = "email@example.com"

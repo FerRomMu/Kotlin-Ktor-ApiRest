@@ -22,7 +22,7 @@ interface UserDAO {
     /**
      * register the password of the user.
      */
-    fun editPasswordUser(passwordUser: PasswordUserDTO): PasswordUserDTO
+    fun editPasswordUser(passwordUser: PasswordUserDTO)
 
     /**
      * deletes a user.
@@ -33,4 +33,18 @@ interface UserDAO {
      * Returns hash of the password of the given user if exists.
      */
     fun getHash(user: String): String?
+
+    /**
+     * Indicates if email is in use.
+     * params: The mail to be checked.
+     * Returns: True if mail is in use.
+     */
+    fun isUserInUse(user: String): Boolean
+
+    /**
+     * Indicates if email is in use.
+     * params: The mail to be checked.
+     * Returns: True if mail is in use.
+     */
+    fun isMailInUse(mail: String): Boolean
 }

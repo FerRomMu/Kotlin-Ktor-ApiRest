@@ -21,9 +21,8 @@ class MockUserDAO: UserDAO {
         return user
     }
 
-    override fun editPasswordUser(passwordUser: PasswordUserDTO): PasswordUserDTO {
+    override fun editPasswordUser(passwordUser: PasswordUserDTO) {
         db.passwordsTable[passwordUser.user.user] = passwordUser.password
-        return passwordUser
     }
 
     override fun deleteUser(id: Long) {
@@ -33,5 +32,13 @@ class MockUserDAO: UserDAO {
 
     override fun getHash(user: String): String? {
         return db.passwordsTable[user]
+    }
+
+    override fun isUserInUse(user: String): Boolean {
+        TODO("Not yet implemented")
+    }
+
+    override fun isMailInUse(mail: String): Boolean {
+        TODO("Not yet implemented")
     }
 }
