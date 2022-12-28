@@ -1,5 +1,6 @@
 package vsapp.service
 
+import vsapp.exceptions.ConflictMailOrUserException
 import vsapp.model.dtos.PasswordUserDTO
 import vsapp.model.User
 import vsapp.repository.UserDAO
@@ -16,6 +17,7 @@ class UserServiceImpl(private val userDao: UserDAO): UserService {
     }
 
     override fun signUp(user: String, password: String, email: String): User? {
+        if (userDao.isUserInUse(user) || userDao.isMailInUse(email)) { throw ConflictMailOrUserException() }
         val userMade = userDao.createUser(User(null,user,listOf(),email,null))
         userDao.editPasswordUser(PasswordUserDTO(userMade, password))
         return userMade
