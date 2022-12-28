@@ -21,7 +21,9 @@ class UserServiceImpl(private val userDao: UserDAO): UserService {
         return userMade
     }
 
-    override fun deleteUser(id: Long) {
+    override fun deleteUser(id: Long): Boolean {
+        if (userDao.userById(id) == null) { return false }
         userDao.deleteUser(id)
+        return true
     }
 }

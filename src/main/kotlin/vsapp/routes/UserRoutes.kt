@@ -52,7 +52,10 @@ fun Route.userRoute() {
             }
             delete("/delete") {
                 val principal = call.principal<JWTPrincipal>()
-                userController.deleteUser(principal!!.payload.getClaim("userId").asLong())
+                val result = userController.deleteUser(principal!!.payload.getClaim("userId").asLong())
+                if (result == null) {
+                    call.respond(HttpStatusCode(404, "NotFound"), ErrorDTO("User not found."))
+                }
                 call.respond(HttpStatusCode(200, "OK"))
             }
         }

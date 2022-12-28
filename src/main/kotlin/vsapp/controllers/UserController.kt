@@ -41,7 +41,7 @@ class UserController(private val userMapper: UserMapper,
      * Deletes a user if possible.
      * param: the id of the user to delete.
      */
-    fun deleteUser(id: Long) {
-        service.deleteUser(id)
+    fun deleteUser(id: Long): Boolean {
+        return service.deleteUser(id)
     }
 }
