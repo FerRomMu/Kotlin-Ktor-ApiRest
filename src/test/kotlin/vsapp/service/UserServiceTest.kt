@@ -1,13 +1,17 @@
 package vsapp.service
 
 import io.mockk.every
+import io.mockk.justRun
 import io.mockk.mockk
 import io.mockk.verify
 import org.junit.Test
+import vsapp.exceptions.ConflictMailOrUserException
 import vsapp.model.User
 import vsapp.repository.UserDAO
 import kotlin.test.assertEquals
+import kotlin.test.assertFalse
 import kotlin.test.assertNull
+import kotlin.test.assertTrue
 
 class UserServiceTest {
 
@@ -94,32 +98,72 @@ class UserServiceTest {
         assertEquals(user, userMock)
         verify(exactly = 1) { userDao.userById(1L) }
     }
-/*
+
     @Test(expected = ConflictMailOrUserException::class)
-    fun `signUp throws ConflictMailOrUserException if email or username is already in use`() {
+    fun `signUp throws ConflictMailOrUserException if username is already in use`() {
+        //Setup
+        every { userDao.isUserInUse("user") } returns true
+        every { userDao.isMailInUse("email@example.com") } returns false
         val username = "user"
         val password = "password"
         val email = "email@example.com"
-        every { userDao.signUp(username, password, email) } throws ConflictMailOrUserException()
+
+        //Excercise
+        userService.signUp(username, password, email)
+    }
+
+    @Test(expected = ConflictMailOrUserException::class)
+    fun `signUp throws ConflictMailOrUserException if email is already in use`() {
+        //Setup
+        every { userDao.isUserInUse("user") } returns false
+        every { userDao.isMailInUse("email@example.com") } returns true
+        val username = "user"
+        val password = "password"
+        val email = "email@example.com"
+
+        //Exercise
         userService.signUp(username, password, email)
     }
 
     @Test
     fun `signUp returns user if registration was successful`() {
+        //Setup
+        every { userDao.isUserInUse("user") } returns false
+        every { userDao.isMailInUse("email@example.com") } returns false
+        every { userDao.createUser(any()) } returns userMock
         val username = "user"
         val password = "password"
         val email = "email@example.com"
+
+        //Exercise
         val user = userService.signUp(username, password, email)
-        assertEquals(username, user?.username)
-        assertEquals(password, user?.password)
-        assertEquals(email, user?.email)
+        assertEquals(user, userMock)
     }
 
     @Test
     fun `deleteUser deletes user if exists`() {
+        //Setup
         val userId = 1L
-        every { userDao.deleteUser(userId) } returns Unit
-        userService.deleteUser(userId)
-        verify { userDao.deleteUser(userId) }
-    }*/
+        every { userDao.userById(userId) } returns userMock
+        justRun { userDao.deleteUser(userId) }
+
+        //Exercise
+        val result = userService.deleteUser(userId)
+
+        assertTrue(result)
+        verify(exactly = 1) { userDao.deleteUser(userId) }
+    }
+
+    @Test
+    fun `deleteUser returns false if user does not exist`() {
+        //Setup
+        val userId = 1L
+        every { userDao.userById(userId) } returns null
+
+        //Exercise
+        val result = userService.deleteUser(userId)
+
+        assertFalse(result)
+        verify(exactly = 0) { userDao.deleteUser(userId) }
+    }
 }

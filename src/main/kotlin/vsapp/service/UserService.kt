@@ -26,5 +26,10 @@ interface UserService {
      */
     fun signUp(user: String, password: String, email: String): User?
 
-    fun deleteUser(id: Long)
+    /**
+     * Deletes a user if exists.
+     * params: id is the id of the user to be deleted.
+     * returns: true if user was deleted, false if not.
+     */
+    fun deleteUser(id: Long): Boolean
 }
