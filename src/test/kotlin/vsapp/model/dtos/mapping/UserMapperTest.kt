@@ -1,7 +1,5 @@
-import io.mockk.mockk
 import vsapp.model.User
 import vsapp.model.dtos.UserDTO
-import vsapp.model.dtos.mapping.PartyMapper
 import vsapp.model.dtos.mapping.UserMapper
 import kotlin.test.Test
 import kotlin.test.assertEquals
