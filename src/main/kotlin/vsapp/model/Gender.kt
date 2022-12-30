@@ -1,5 +1,5 @@
 package vsapp.model
 
 enum class Gender {
-    Man, Woman, Other
+    Male, Female, Other
 }
