@@ -29,7 +29,7 @@ val koinModule = module {
     //Mappers
     single { MemberMapper() }
     single { PartyMapper(get()) }
-    single { UserMapper(get()) }
+    single { UserMapper() }
 
     //Controllers
     single { PartyController(get(), get()) }

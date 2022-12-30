@@ -18,13 +18,6 @@ class UserServiceTest {
     private val userDao = mockk<UserDAO>()
     private val userService = UserServiceImpl(userDao)
     private val userMock = mockk<User>()
-    /*
-    @BeforeTest
-    fun setUp() {
-        every { userDao.getUser(any()) } returns null
-        every { userDao.signUp(any(), any(), any()) } returns User()
-        every { userDao.deleteUser(any()) } returns Unit
-    }*/
 
     @Test
     fun `login returns null if user does not exist`() {
