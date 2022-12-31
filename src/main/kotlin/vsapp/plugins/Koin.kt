@@ -1,9 +1,8 @@
 package vsapp.plugins
 
 import org.koin.dsl.module
-import vsapp.service.UserService
-import vsapp.service.UserServiceImpl
 import org.koin.core.context.startKoin
+import vsapp.controllers.MemberController
 import vsapp.controllers.PartyController
 import vsapp.controllers.UserController
 import vsapp.model.dtos.mapping.MemberMapper
@@ -11,8 +10,7 @@ import vsapp.model.dtos.mapping.PartyMapper
 import vsapp.model.dtos.mapping.UserMapper
 import vsapp.repository.mockDb.MockPartyDAO
 import vsapp.repository.mockDb.MockUserDAO
-import vsapp.service.PartyService
-import vsapp.service.PartyServiceImpl
+import vsapp.service.*
 
 fun configureKoin(){
     startKoin {
@@ -25,6 +23,7 @@ val koinModule = module {
     //Services
     single<UserService> { UserServiceImpl(MockUserDAO()) }
     single<PartyService> { PartyServiceImpl(MockPartyDAO()) }
+    single<MemberService> { MemberServiceImpl(vsapp.repository.mockDb.MockMemberDAO()) }
 
     //Mappers
     single { MemberMapper() }
@@ -34,4 +33,6 @@ val koinModule = module {
     //Controllers
     single { PartyController(get(), get()) }
     single { UserController(get(), get()) }
+    single { MemberController(get(), get()) }
+
 }
