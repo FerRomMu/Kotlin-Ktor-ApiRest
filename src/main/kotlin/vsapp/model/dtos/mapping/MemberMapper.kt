@@ -13,7 +13,7 @@ class MemberMapper {
 
     fun fromDTO(memberDTO: MemberDTO): Member {
         val gender = Gender.values().firstOrNull { it.name == memberDTO.gender } ?: Gender.Other
-        return Member(memberDTO.id, memberDTO.name, gender, memberDTO.points)
+        return Member(memberDTO.id, memberDTO.name, gender, memberDTO.points, null)
     }
 
     fun toSimplifiedDTO(member: Member): MemberSimplifiedDTO {
@@ -21,6 +21,6 @@ class MemberMapper {
     }
 
     fun fromSimplifiedDTO(memberSimplifiedDTO: MemberSimplifiedDTO): Member {
-        return Member(memberSimplifiedDTO.id, memberSimplifiedDTO.name, null, null)
+        return Member(memberSimplifiedDTO.id, memberSimplifiedDTO.name, null, null, null)
     }
 }

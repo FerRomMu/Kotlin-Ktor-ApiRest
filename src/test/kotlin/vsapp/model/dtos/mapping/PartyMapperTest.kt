@@ -22,8 +22,8 @@ class PartyMapperTest {
             id = 1L,
             userId = 1L,
             order = listOf(
-                Member(id = 1, name = "Member 1", Gender.Male, 0),
-                Member(id = 2, name = "Member 2", Gender.Female, 0)
+                Member(id = 1, name = "Member 1", Gender.Male, 0, null),
+                Member(id = 2, name = "Member 2", Gender.Female, 0, null)
             ),
             family = listOf(listOf(1,2)),
             relations = listOf(
@@ -55,7 +55,7 @@ class PartyMapperTest {
                 RelationDTO(id1 = 2, id2 = 1)
             )
         )
-        every { memberMapper.fromSimplifiedDTO(any()) } returns Member(0L, "mocked", null, null)
+        every { memberMapper.fromSimplifiedDTO(any()) } returns Member(0L, "mocked", null, null, null)
 
         //Exercise
         val party = partyMapper.fromDTO(partyDTO)

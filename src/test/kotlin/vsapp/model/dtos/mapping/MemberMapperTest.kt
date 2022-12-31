@@ -13,7 +13,7 @@ class MemberMapperTest {
     @Test
     fun `test toDTO method`() {
         //Setup
-        val member = Member(1, "John", Gender.Male, 100)
+        val member = Member(1, "John", Gender.Male, 100, null)
         val expectedMemberDTO = MemberDTO(1, "John", "Male", 100)
 
         //Exercise
@@ -27,7 +27,7 @@ class MemberMapperTest {
     fun `test fromDTO method`() {
         //Setup
         val memberDTO = MemberDTO(1, "John", "Male", 100)
-        val expectedMember = Member(1, "John", Gender.Male, 100)
+        val expectedMember = Member(1, "John", Gender.Male, 100, null)
 
         //Exercise
         val member = memberMapper.fromDTO(memberDTO)
@@ -42,7 +42,7 @@ class MemberMapperTest {
     @Test
     fun `test toSimplifiedDTO method`() {
         //Setup
-        val member = Member(1, "John", Gender.Male, 100)
+        val member = Member(1, "John", Gender.Male, 100, null)
         val expectedMemberSimplifiedDTO = MemberSimplifiedDTO(1, "John")
 
         //Exercise
@@ -56,7 +56,7 @@ class MemberMapperTest {
     fun `test fromSimplifiedDTO method`() {
         //Setup
         val memberSimplifiedDTO = MemberSimplifiedDTO(1, "John")
-        val expectedMember = Member(1, "John", null, null)
+        val expectedMember = Member(1, "John", null, null, null)
 
         //Exercise
         val member = memberMapper.fromSimplifiedDTO(memberSimplifiedDTO)
