@@ -13,6 +13,8 @@ import vsapp.model.dtos.mapping.UserMapper
 import vsapp.service.UserService
 import kotlin.test.BeforeTest
 import kotlin.test.assertEquals
+import kotlin.test.assertFalse
+import kotlin.test.assertTrue
 
 class UserControllerTest {
 
@@ -33,8 +35,6 @@ class UserControllerTest {
         every { mockService.signUp(eq("fafafa"),eq( "1234"), eq("fa@test.com")) } returns aUser
         every { mockService.signUp(neq("fafafa"),any(), any()) } returns null
         every { mockService.signUp(any(),any(), neq("fa@test.com")) } returns null
-
-        justRun { mockService.deleteUser(any()) }
 
         every { mockMapper.toDTO(eq(aUser)) } returns(aUserDTO)
         every { mockMapper.toDTO(isNull()) } returns(null)
@@ -86,7 +86,27 @@ class UserControllerTest {
 
     @Test
     fun `si borro a un user llamo al delete del service`() {
-        userController.deleteUser(0L)
+        //Setup
+        every { mockService.deleteUser(any()) } returns true
+
+        //Exercise
+        val result = userController.deleteUser(0L)
+
+        //Verify
+        assertTrue(result)
+        verify(exactly = 1) { mockService.deleteUser(0L) }
+    }
+
+    @Test
+    fun `si borro a un user que no existe devuelve false y llamo al delete del service`() {
+        //Setup
+        every { mockService.deleteUser(any()) } returns false
+
+        //Exercise
+        val result = userController.deleteUser(0L)
+
+        //Verify
+        assertFalse(result)
         verify(exactly = 1) { mockService.deleteUser(0L) }
     }
 }
