@@ -7,8 +7,8 @@ import vsapp.model.dtos.MemberSimplifiedDTO
 
 class MemberMapper {
 
-    fun toDTO(member: Member): MemberDTO {
-        return MemberDTO(member.id, member.name, member.gender.toString(), member.points)
+    fun toDTO(member: Member?): MemberDTO? {
+        return if(member != null) { MemberDTO(member.id, member.name, member.gender.toString(), member.points) } else { null }
     }
 
     fun fromDTO(memberDTO: MemberDTO): Member {

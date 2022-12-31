@@ -13,16 +13,17 @@ import kotlin.test.assertEquals
 
 class MemberControllerTest {
 
-    private val controller = MemberController()
     private val aMember = mockk<Member>()
     private val aMemberDTO = mockk<MemberDTO>()
     private val mockService = mockk<MemberService>()
     private val mockMapper = mockk<MemberMapper>()
+    private val controller = MemberController(mockMapper, mockService)
 
     @BeforeTest
     fun setup() {
 
         every { mockMapper.toDTO(eq(aMember)) } returns(aMemberDTO)
+        every { mockMapper.toDTO(isNull()) } returns(null)
         every { mockMapper.fromDTO(eq(aMemberDTO)) } returns(aMember)
 
     }
