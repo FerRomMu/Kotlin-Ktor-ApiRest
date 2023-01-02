@@ -20,7 +20,7 @@ fun Route.membersRoutes() {
             get("/{memberId}"){
                 val userId = call.principal<JWTPrincipal>()!!.payload.getClaim("userId").asLong()
                 try {
-                    val member = controller.getMember(call.parameters["id"]!!.toLong(), userId)
+                    val member = controller.getMember(call.parameters["memberId"]!!.toLong(), userId)
                     if(member == null) {
                         call.respond(HttpStatusCode(404, "NotFound"), ErrorDTO("Not found member with given id."))
                     }

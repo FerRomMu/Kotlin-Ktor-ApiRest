@@ -20,7 +20,7 @@ class MemberMapper {
         return MemberSimplifiedDTO(member.id!!, member.name)
     }
 
-    fun fromSimplifiedDTO(memberSimplifiedDTO: MemberSimplifiedDTO): Member {
-        return Member(memberSimplifiedDTO.id, memberSimplifiedDTO.name, null, null, null)
+    fun fromSimplifiedDTO(memberSimplifiedDTO: MemberSimplifiedDTO, userId: Long): Member {
+        return Member(memberSimplifiedDTO.id, memberSimplifiedDTO.name, null, null, userId)
     }
 }

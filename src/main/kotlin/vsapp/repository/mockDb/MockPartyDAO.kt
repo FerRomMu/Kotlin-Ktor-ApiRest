@@ -14,7 +14,9 @@ class MockPartyDAO: PartyDAO {
         party.id = db.getPartyId()
         db.partyTable[party.id!!] = party
         party.order.forEach{
-            db.memberTable[db.memberTable.size.toLong()] = it
+            val i = db.memberTable.size.toLong()
+            db.memberTable[i] = it
+            it.id = i
         }
         return party
     }

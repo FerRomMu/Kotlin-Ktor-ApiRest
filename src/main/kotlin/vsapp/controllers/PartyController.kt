@@ -23,7 +23,7 @@ class PartyController(private val mapper: PartyMapper,
      * returns: A Pair with the id of the party created and his DTO.
      */
     fun createParty(partyDTO: PartyDTO, userId: Long): Pair<Long,PartyDTO> {
-        val party = mapper.fromDTO(partyDTO)
+        val party = mapper.fromDTO(partyDTO, userId)
         party.userId = userId
         val partyMade = service.createParty(party)
         return Pair(partyMade.id!!, mapper.toDTO(partyMade)!!)
@@ -36,7 +36,7 @@ class PartyController(private val mapper: PartyMapper,
      * returns: A PartyDTO of the party updated or null if the party doesn't exist.
      */
     fun editParty(partyDTO: PartyDTO, id: Long, userId: Long): PartyDTO? {
-        val party = mapper.fromDTO(partyDTO)
+        val party = mapper.fromDTO(partyDTO, userId)
         party.userId = userId
         party.id = id
         return mapper.toDTO(service.editParty(party))
