@@ -4,7 +4,9 @@ import vsapp.model.Member
 import vsapp.repository.MemberDAO
 
 class MockMemberDAO(): MemberDAO {
+    val db = MockTables
+
     override fun memberById(id: Long): Member? {
-        TODO("Not yet implemented")
+        return db.memberTable[id]
     }
 }

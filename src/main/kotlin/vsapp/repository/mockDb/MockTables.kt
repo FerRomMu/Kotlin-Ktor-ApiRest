@@ -1,5 +1,6 @@
 package vsapp.repository.mockDb
 
+import vsapp.model.Member
 import vsapp.model.Party
 import vsapp.model.User
 
@@ -28,6 +29,8 @@ object MockTables {
     )
 
     val partyTable = mutableMapOf<Long, Party>()
+
+    val memberTable = mutableMapOf<Long, Member>()
 
     val passwordsTable = mutableMapOf<String, String>(
         "a" to "a",
