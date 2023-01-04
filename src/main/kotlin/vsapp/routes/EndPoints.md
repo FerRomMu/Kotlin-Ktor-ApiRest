@@ -197,7 +197,7 @@ _____
 ## Challenges
 
 ---
-### GET: /categories
+### GET: challenge/categories
 
 **Params**:
 - Authorization: header
@@ -236,7 +236,7 @@ _____
 | 400  | BadRequest   | ``ErrorDTO``     |        |
 | 401  | Unauthorized | ``ErrorDTO``     |        |
 ----
-### PUT: /challengeResult
+### PUT: /challenge/result
 
 **params**:
 - Authorization: header
