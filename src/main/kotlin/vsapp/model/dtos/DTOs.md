@@ -29,7 +29,7 @@
 ```json
 {
   "order": ["MemberDTO"],
-  "family": [["MemberDTO"]],
+  "family": [["Long"]],
   "relations": ["RelationDTO"]
 }
 ```
@@ -37,8 +37,8 @@
 ```json
 {
   "id": "Long",
-  "name": "string",
-  "gender": "string",
+  "name": "String",
+  "gender": "String",
   "points": "Int"
 }
 ```
@@ -46,18 +46,18 @@
 ```json
 {
   "id": "Long",
-  "name": "string"
+  "name": "String"
 }
 ```
 ### ChallengeDTO
 ```json
 {
   "id" : "Long",
-  "title" : "string",
-  "body" : "string",
-  "options": ["string"],
+  "title" : "String",
+  "body" : "String",
+  "options": ["String"],
   "points": "Int",
-  "others": [{ "name": "string", "id": "Long" }]
+  "others": ["MemberSimplifiedDTO"]
 }
 ```
 ### ChallengeResultDTO
@@ -66,15 +66,15 @@
   "partyId": "Long",
   "id" : "Long",
   "points": "Int",
-  "acceptedBy": [{ "name": "string", "id": "Long" }],
-  "rejectedBy": [{ "name": "string", "id": "Long" }],
+  "acceptedBy": ["MemberSimplifiedDTO"],
+  "rejectedBy": ["MemberSimplifiedDTO"],
   "option": "String?"
 }
 ```
 ### CategoriesDTO
 ```json
 {
-  "categories": [{"name": "string", "description": "string"}]
+  "categories": ["CategoryDTO"]
 }
 ```
 ### CategoryDTO
@@ -90,7 +90,7 @@
 {
   "partyId": "Long",
   "record": "Int",
-  "members": [{ "name": "string", "points": "Int" }]
+  "members": ["MemberDTO"]
 }
 ```
 

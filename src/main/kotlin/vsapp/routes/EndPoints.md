@@ -16,6 +16,8 @@
   "password": "string"
 }
 ```
+(LoginUserDTO)
+
 **Response**:
 
 | Code | Message    | Body                 | Header                   |
@@ -53,6 +55,8 @@ Authorization: header
   "email": "string"
 }
 ```
+(SignInDTO)
+
 **Response**:
 
 | Code | Message    | Body                 | Header                   |
@@ -113,10 +117,12 @@ Authorization: header
 ```json
 {
   "order" : [{ "name":"string", "gender":"string" }],
-  "family" : [["string"]],
-  "relationships" : [{ "parejaA": "string", "parejaB": "string" }]
+  "family" : [["Long"]],
+  "relations" : ["RelationDTO"]
 }
 ```
+(PartyDTO)
+
 **Response**:
 
 | Code | Message      | Body         | Header            |
@@ -136,8 +142,8 @@ _____
 ```json
 {
   "order" : [{ "name":"string", "gender":"string" }],
-  "family" : [["string"]],
-  "relationships" : [{ "parejaA": "string", "parejaB": "string" }]
+  "family" : [["Long"]],
+  "relations" : ["RelationDTO"]
 }
 ```
 **Response**:
@@ -228,6 +234,8 @@ _____
   "partyId": "long"
 }
 ```
+(ChallengeRequestDTO)
+
 **Response**:
 
 | Code | Message      | Body             | Header |
