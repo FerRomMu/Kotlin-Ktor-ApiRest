@@ -243,6 +243,8 @@ _____
 | 200  | OK           | ``ChallengeDTO`` |        |
 | 400  | BadRequest   | ``ErrorDTO``     |        |
 | 401  | Unauthorized | ``ErrorDTO``     |        |
+| 403  | Forbidden    | ``ErrorDTO``     |        |
+| 404  | Not Found    | ``ErrorDTO``     |        |
 ----
 ### PUT: /challenge/result
 
@@ -267,3 +269,4 @@ _____
 | 400  | BadRequest   | ``ErrorDTO``   |        |
 | 401  | Unauthorized | ``ErrorDTO``   |        |
 | 403  | Forbidden    | ``ErrorDTO``   |        |
+| 404  | Not Found    | ``ErrorDTO``   |        |
