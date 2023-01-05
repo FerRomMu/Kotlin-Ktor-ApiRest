@@ -55,10 +55,10 @@ class PartyMapperTest {
                 RelationDTO(id1 = 2, id2 = 1)
             )
         )
-        every { memberMapper.fromSimplifiedDTO(any()) } returns Member(0L, "mocked", null, null, null)
+        every { memberMapper.fromSimplifiedDTO(any(), 1L) } returns Member(0L, "mocked", null, null, 1L)
 
         //Exercise
-        val party = partyMapper.fromDTO(partyDTO)
+        val party = partyMapper.fromDTO(partyDTO, 1L)
 
         //Verify
         assertEquals(2, party.order.size)

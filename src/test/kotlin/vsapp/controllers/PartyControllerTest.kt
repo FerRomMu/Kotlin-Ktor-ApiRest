@@ -27,7 +27,7 @@ class PartyControllerTest {
 
         every { mockMapper.toDTO(eq(aParty)) } returns(aPartyDTO)
         every { mockMapper.toDTO(isNull()) } returns(null)
-        every { mockMapper.fromDTO(eq(aPartyDTO)) } returns(aParty)
+        every { mockMapper.fromDTO(eq(aPartyDTO), any()) } returns(aParty)
 
     }
 

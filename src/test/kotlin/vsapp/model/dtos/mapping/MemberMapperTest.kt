@@ -56,10 +56,10 @@ class MemberMapperTest {
     fun `test fromSimplifiedDTO method`() {
         //Setup
         val memberSimplifiedDTO = MemberSimplifiedDTO(1, "John")
-        val expectedMember = Member(1, "John", null, null, null)
+        val expectedMember = Member(1, "John", null, null, 1L)
 
         //Exercise
-        val member = memberMapper.fromSimplifiedDTO(memberSimplifiedDTO)
+        val member = memberMapper.fromSimplifiedDTO(memberSimplifiedDTO, 1L)
 
         //Verify
         assertEquals(expectedMember.id, member.id)
