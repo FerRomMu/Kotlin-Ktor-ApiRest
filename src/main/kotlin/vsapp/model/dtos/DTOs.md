@@ -1,52 +1,16 @@
 # DTOs
 
-### LoginUserDTO
+### CategoriesDTO
 ```json
 {
-  "user": "string",
-  "password": "string"
+  "categories": ["CategoryDTO"]
 }
 ```
-### SignInDTO
+### CategoryDTO
 ```json
 {
-  "user": "string",
-  "password": "string",
-  "email": "string"
-}
-```
-### UserDTO
-```json
-{
-  "id": "Long",
-  "user": "String",
-  "partiesIds": ["Longs"],
-  "email": "String",
-  "lastParty": "Long"
-}
-```
-### PartyDTO
-```json
-{
-  "order": ["MemberDTO"],
-  "family": [["Long"]],
-  "relations": ["RelationDTO"]
-}
-```
-### MemberDTO
-```json
-{
-  "id": "Long",
-  "name": "String",
-  "gender": "String",
-  "points": "Int"
-}
-```
-### MemberSimplifiedDTO
-```json
-{
-  "id": "Long",
-  "name": "String"
+  "name": "string", 
+  "description": "string"
 }
 ```
 ### ChallengeDTO
@@ -71,21 +35,51 @@
   "option": "String?"
 }
 ```
-### CategoriesDTO
+### ErrorDTO
 ```json
 {
-  "categories": ["CategoryDTO"]
+  "errorMessage": "String"
 }
 ```
-### CategoryDTO
+### LoginUserDTO
 ```json
 {
-  "name": "string", 
-  "description": "string"
+  "user": "string",
+  "password": "string"
+}
+```
+### MemberDTO
+```json
+{
+  "id": "Long",
+  "name": "String",
+  "gender": "String",
+  "points": "Int"
+}
+```
+### MemberSimplifiedDTO
+```json
+{
+  "id": "Long",
+  "name": "String"
+}
+```
+### PartyDTO
+```json
+{
+  "order": ["MemberDTO"],
+  "family": [["Long"]],
+  "relations": ["RelationDTO"]
+}
+```
+### RelationDTO
+```json
+{
+  "id1": "Long",
+  "id2": "Long"
 }
 ```
 ### PointsDTO
-
 ```json
 {
   "partyId": "Long",
@@ -93,10 +87,21 @@
   "members": ["MemberDTO"]
 }
 ```
-
-### ErrorDTO
+### SignInDTO
 ```json
 {
-  "errorMessage": "String"
+  "user": "string",
+  "password": "string",
+  "email": "string"
+}
+```
+### UserDTO
+```json
+{
+  "id": "Long",
+  "user": "String",
+  "partiesIds": ["Longs"],
+  "email": "String",
+  "lastParty": "Long"
 }
 ```
