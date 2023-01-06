@@ -13,7 +13,8 @@ class ChallengeController(private val mapper: ChallengeMapper,
     }
 
     fun getChallenge(request: ChallengeRequestDTO, id: Long): ChallengeDTO? {
-        TODO()
+        val category = mapper.categoryFromDTO(request.category)
+        return mapper.challengeToDTO(service.getChallenge(category, request.memberId, id))
     }
 
     fun saveResult(result: ChallengeResultDTO, id: Long?): PointsDTO? {
