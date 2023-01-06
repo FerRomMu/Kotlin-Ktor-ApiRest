@@ -12,7 +12,7 @@ class ChallengeController(private val mapper: ChallengeMapper,
         return mapper.categoriesToDTO(service.getCategories())
     }
 
-    fun getChallenge(party: PartyDTO, id: Long): ChallengeDTO? {
+    fun getChallenge(request: ChallengeRequestDTO, id: Long): ChallengeDTO? {
         TODO()
     }
 

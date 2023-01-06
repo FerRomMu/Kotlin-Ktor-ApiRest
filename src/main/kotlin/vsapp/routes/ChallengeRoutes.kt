@@ -10,6 +10,7 @@ import io.ktor.server.routing.*
 import org.koin.ktor.ext.inject
 import vsapp.controllers.ChallengeController
 import vsapp.exceptions.ForbiddenMemberException
+import vsapp.model.dtos.ChallengeRequestDTO
 import vsapp.model.dtos.ChallengeResultDTO
 import vsapp.model.dtos.ErrorDTO
 import vsapp.model.dtos.PartyDTO
@@ -26,7 +27,7 @@ fun Route.challengeRoutes() {
             get(){
                 val userId = call.principal<JWTPrincipal>()!!.payload.getClaim("userId").asLong()
                 try {
-                    val challenge = controller.getChallenge(call.receive<PartyDTO>(), userId)
+                    val challenge = controller.getChallenge(call.receive<ChallengeRequestDTO>(), userId)
                     if(challenge == null) {
                         call.respond(HttpStatusCode(404, "NotFound"), ErrorDTO("Not found member with given id."))
                     }
