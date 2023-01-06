@@ -55,7 +55,7 @@ class ChallengeControllerTest {
         every { mockRequestDTO.category } returns mockCategoryDTO
         every { mockRequestDTO.memberId } returns 1L
         every { mockRequestDTO.partyId } returns 1L
-        every { mockMapper.categoryToDTO(eq(mockCategoryDTO)) } returns mockCategory1
+        every { mockMapper.categoryFromDTO(eq(mockCategoryDTO)) } returns mockCategory1
         every { mockMapper.challengeToDTO(eq(mockChallenge)) } returns mockChallengeDTO
 
         val result = controller.getChallenge(mockRequestDTO, 1L)
@@ -70,7 +70,7 @@ class ChallengeControllerTest {
         every { mockRequestDTO.category } returns mockCategoryDTO
         every { mockRequestDTO.memberId } returns 1L
         every { mockRequestDTO.partyId } returns 1L
-        every { mockMapper.categoryToDTO(eq(mockCategoryDTO)) } returns mockCategory1
+        every { mockMapper.categoryFromDTO(eq(mockCategoryDTO)) } returns mockCategory1
         every { mockMapper.challengeToDTO(isNull()) } returns null
 
         val result = controller.getChallenge(mockRequestDTO, 1L)
