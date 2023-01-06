@@ -4,9 +4,7 @@ import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
 import vsapp.model.Category
-import vsapp.model.Member
 import vsapp.model.dtos.CategoriesDTO
-import vsapp.model.dtos.MemberDTO
 import vsapp.model.dtos.mapping.ChallengeMapper
 import vsapp.service.ChallengeService
 import kotlin.test.Test
