@@ -24,6 +24,14 @@
   "others": ["MemberSimplifiedDTO"]
 }
 ```
+### ChallengeRequestDTO
+```json
+{
+  "category": "CategoryDTO",
+  "memberId" : "Long",
+  "partyId" : "Long"
+}
+```
 ### ChallengeResultDTO
 ```json
 {
