@@ -24,7 +24,7 @@ class ChallengeMapper {
         TODO("Not yet implemented")
     }
 
-    fun toPointsDTO(saveResult: List<Member>, partyId: Long): PointsDTO? {
+    fun pointsToDTO(saveResult: List<Member>, partyId: Long): PointsDTO? {
         TODO("Not yet implemented")
     }
 

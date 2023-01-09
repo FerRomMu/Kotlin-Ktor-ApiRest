@@ -19,7 +19,7 @@ class ChallengeController(private val mapper: ChallengeMapper,
 
     fun saveResult(resultDTO: ChallengeResultDTO, id: Long?): PointsDTO? {
         val result = mapper.resultFromDTO(resultDTO)
-        return mapper.toPointsDTO(service.saveResult(result,id), result.partyId)
+        return mapper.pointsToDTO(service.saveResult(result,id), result.partyId)
     }
 
 }

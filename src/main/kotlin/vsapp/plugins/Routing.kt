@@ -2,6 +2,7 @@ package vsapp.plugins
 
 import io.ktor.server.routing.*
 import io.ktor.server.application.*
+import vsapp.routes.challengeRoutes
 import vsapp.routes.partyRoutes
 import vsapp.routes.userRoute
 import vsapp.routes.membersRoutes
@@ -14,5 +15,6 @@ fun Application.configureRouting() {
         userRoute()
         partyRoutes()
         membersRoutes()
+        challengeRoutes()
     }
 }

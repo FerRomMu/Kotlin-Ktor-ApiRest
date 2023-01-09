@@ -103,7 +103,7 @@ class ChallengeControllerTest {
 
         every { mockService.saveResult(eq(mockResult), eq(1L)) } returns allMembers
         every { mockMapper.resultFromDTO(eq(mockResultDTO)) } returns mockResult
-        every { mockMapper.toPointsDTO(eq(allMembers), eq(1L)) } returns mockPointsDTO
+        every { mockMapper.pointsToDTO(eq(allMembers), eq(1L)) } returns mockPointsDTO
         every { mockResult.partyId } returns 1L
 
         //Exercise
