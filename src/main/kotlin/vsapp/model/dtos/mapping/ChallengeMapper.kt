@@ -2,9 +2,9 @@ package vsapp.model.dtos.mapping
 
 import vsapp.model.Category
 import vsapp.model.Challenge
-import vsapp.model.dtos.CategoriesDTO
-import vsapp.model.dtos.CategoryDTO
-import vsapp.model.dtos.ChallengeDTO
+import vsapp.model.ChallengeResult
+import vsapp.model.Member
+import vsapp.model.dtos.*
 
 class ChallengeMapper {
 
@@ -17,6 +17,14 @@ class ChallengeMapper {
     }
 
     fun challengeToDTO(challenge: Challenge?): ChallengeDTO? {
+        TODO("Not yet implemented")
+    }
+
+    fun resultFromDTO(resultDTO: ChallengeResultDTO): ChallengeResult {
+        TODO("Not yet implemented")
+    }
+
+    fun toPointsDTO(saveResult: List<Member>, partyId: Long): PointsDTO? {
         TODO("Not yet implemented")
     }
 
