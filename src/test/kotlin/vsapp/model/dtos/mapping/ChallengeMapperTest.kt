@@ -44,7 +44,14 @@ class ChallengeMapperTest {
 
     @Test
     fun `test categoryFromDTO method`() {
-        TODO("Not yet implemented")
+        val categoryDTO = CategoryDTO(1L, "fafafa", "descripción")
+        val expected = Category(1L, "fafafa", "descripción")
+
+        val result = challengerMapper.categoryFromDTO(categoryDTO)
+
+        assertEquals(expected.id, result.id)
+        assertEquals(expected.name, result.name)
+        assertEquals(expected.description, result.description)
     }
 
     @Test
