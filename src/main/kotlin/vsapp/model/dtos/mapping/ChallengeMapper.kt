@@ -9,11 +9,15 @@ import vsapp.model.dtos.*
 class ChallengeMapper {
 
     fun categoriesToDTO(categories: List<Category>): CategoriesDTO {
-        TODO("Not yet implemented")
+        return CategoriesDTO(categories.map { category -> categoryToDTO(category) })
+    }
+
+    fun categoryToDTO(category: Category): CategoryDTO {
+        return CategoryDTO(category.id, category.name, category.description)
     }
 
     fun categoryFromDTO(categoryDTO: CategoryDTO): Category {
-        TODO("Not yet implemented")
+        return Category(categoryDTO.id, categoryDTO.name, categoryDTO.description)
     }
 
     fun challengeToDTO(challenge: Challenge?): ChallengeDTO? {

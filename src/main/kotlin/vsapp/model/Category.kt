@@ -1,4 +1,3 @@
 package vsapp.model
 
-class Category {
-}
+class Category (val id: Long, val name: String, val description: String)
