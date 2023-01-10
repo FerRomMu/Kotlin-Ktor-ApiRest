@@ -6,7 +6,7 @@ import vsapp.model.ChallengeResult
 import vsapp.model.Member
 import vsapp.model.dtos.*
 
-class ChallengeMapper {
+class ChallengeMapper(private val memberMapper: MemberMapper) {
 
     fun categoriesToDTO(categories: List<Category>): CategoriesDTO {
         return CategoriesDTO(categories.map { category -> categoryToDTO(category) })
@@ -21,7 +21,18 @@ class ChallengeMapper {
     }
 
     fun challengeToDTO(challenge: Challenge?): ChallengeDTO? {
-        TODO("Not yet implemented")
+        return if(challenge != null) {
+            ChallengeDTO(
+                challenge.id,
+                challenge.title,
+                challenge.body,
+                challenge.options,
+                challenge.points,
+                memberMapper.allToSimplifiedDTO(challenge.others)
+            )
+        } else {
+            null
+        }
     }
 
     fun resultFromDTO(resultDTO: ChallengeResultDTO): ChallengeResult {

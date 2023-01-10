@@ -23,4 +23,8 @@ class MemberMapper {
     fun fromSimplifiedDTO(memberSimplifiedDTO: MemberSimplifiedDTO, userId: Long): Member {
         return Member(memberSimplifiedDTO.id, memberSimplifiedDTO.name, null, null, userId)
     }
+
+    fun allToSimplifiedDTO(members: List<Member>): List<MemberSimplifiedDTO> {
+        TODO("Not yet implemented")
+    }
 }

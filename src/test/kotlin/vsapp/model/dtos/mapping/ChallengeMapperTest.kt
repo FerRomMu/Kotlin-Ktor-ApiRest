@@ -1,14 +1,17 @@
 package vsapp.model.dtos.mapping
 
+import io.mockk.every
 import io.mockk.mockk
 import vsapp.model.*
 import kotlin.test.Test
 import vsapp.model.dtos.*
 import kotlin.test.assertEquals
+import kotlin.test.assertNull
 
 class ChallengeMapperTest {
 
-    private val challengerMapper = ChallengeMapper()
+    private val mockMapper = mockk<MemberMapper>()
+    private val challengerMapper = ChallengeMapper(mockMapper)
 
     @Test
     fun `test categoriesToDTO method`() {
@@ -54,13 +57,18 @@ class ChallengeMapperTest {
     @Test
     fun `test challengeToDTO method`() {
 
+        val members = listOf(Member(1L,"fafafa", Gender.Male, 5, 1L))
+        val membersDTO = listOf(MemberSimplifiedDTO(1L,"fafafa"))
+
+        every { mockMapper.allToSimplifiedDTO(eq(members))} returns membersDTO
+
         val challenge = Challenge(
             1L,
             "fafafa",
             "body",
             listOf("1","2","3"),
             5,
-            listOf(Member(1L,"fafafa", Gender.Male, 5, 1L))
+            members
         )
         val expectedDTO = ChallengeDTO(
             1L,
@@ -68,12 +76,22 @@ class ChallengeMapperTest {
             "body",
             listOf("1","2","3"),
             5,
-            listOf(MemberSimplifiedDTO(1L,"fafafa"))
+            membersDTO
         )
 
         val result = challengerMapper.challengeToDTO(challenge)
 
         assertEquals(expectedDTO, result)
+    }
+
+    @Test
+    fun `test challengeToDTO method returns null if is null`() {
+
+        val challenge = null
+
+        val result = challengerMapper.challengeToDTO(challenge)
+
+        assertNull(result)
     }
 
     @Test
