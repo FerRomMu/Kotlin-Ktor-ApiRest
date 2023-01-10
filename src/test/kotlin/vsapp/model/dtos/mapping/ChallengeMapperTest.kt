@@ -96,7 +96,39 @@ class ChallengeMapperTest {
 
     @Test
     fun `test resultFromDTO method`() {
-        TODO("Not yet implemented")
+
+        val memberDTO = MemberSimplifiedDTO(1L,"fafafa")
+        val memberDTO2 = MemberSimplifiedDTO(2L,"fefefe")
+        val member = Member(1L,"fafafa", null, null, null)
+        val member2 = Member(2L,"fefefe", null, null, null)
+        val resultDTO = ChallengeResultDTO(
+            1L,
+            1L,
+            "fafafa",
+            5,
+            listOf(memberDTO),
+            listOf(memberDTO2)
+        )
+        val expected = ChallengeResult(
+            1L,
+            1L,
+            "fafafa",
+            5,
+            listOf(member),
+            listOf(member2)
+        )
+        every { mockMapper.fromSimplifiedDTO(memberDTO, null) } returns member
+        every { mockMapper.fromSimplifiedDTO(memberDTO2, null) } returns member2
+
+        val result = challengerMapper.resultFromDTO(resultDTO)
+
+        assertEquals(expected.id, result.id)
+        assertEquals(expected.partyId, result.partyId)
+        assertEquals(expected.option, result.option)
+        assertEquals(expected.points, result.points)
+        assertEquals(expected.accepted, result.accepted)
+        assertEquals(expected.rejected, result.rejected)
+
     }
 
     @Test
