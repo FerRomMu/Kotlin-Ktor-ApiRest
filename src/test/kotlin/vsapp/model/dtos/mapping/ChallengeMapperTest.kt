@@ -1,11 +1,8 @@
 package vsapp.model.dtos.mapping
 
 import io.mockk.mockk
+import vsapp.model.*
 import kotlin.test.Test
-import vsapp.model.Category
-import vsapp.model.Challenge
-import vsapp.model.ChallengeResult
-import vsapp.model.Member
 import vsapp.model.dtos.*
 import kotlin.test.assertEquals
 
@@ -56,7 +53,27 @@ class ChallengeMapperTest {
 
     @Test
     fun `test challengeToDTO method`() {
-        TODO("Not yet implemented")
+
+        val challenge = Challenge(
+            1L,
+            "fafafa",
+            "body",
+            listOf("1","2","3"),
+            5,
+            listOf(Member(1L,"fafafa", Gender.Male, 5, 1L))
+        )
+        val expectedDTO = ChallengeDTO(
+            1L,
+            "fafafa",
+            "body",
+            listOf("1","2","3"),
+            5,
+            listOf(MemberSimplifiedDTO(1L,"fafafa"))
+        )
+
+        val result = challengerMapper.challengeToDTO(challenge)
+
+        assertEquals(expectedDTO, result)
     }
 
     @Test
