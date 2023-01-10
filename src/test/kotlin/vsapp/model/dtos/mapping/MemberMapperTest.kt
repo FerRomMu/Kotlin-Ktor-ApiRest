@@ -67,4 +67,23 @@ class MemberMapperTest {
         assertEquals(expectedMember.gender, member.gender)
         assertEquals(expectedMember.name, member.name)
     }
+
+    @Test
+    fun `test allToSimplifiedDTO method`() {
+        //Setup
+        val member1 = Member(1, "John", Gender.Male, 100, null)
+        val member2 = Member(2, "Fafa", Gender.Male, 100, null)
+
+        val memberSimplifiedDTO = MemberSimplifiedDTO(1, "John")
+        val memberSimplifiedDTO2 = MemberSimplifiedDTO(2, "Fafa")
+        val list = listOf(member1, member2)
+
+        //Exercise
+        val result = memberMapper.allToSimplifiedDTO(list)
+
+        //Verify
+        assertEquals(result.size, 2)
+        assertEquals(result[0], memberSimplifiedDTO)
+        assertEquals(result[1], memberSimplifiedDTO2)
+    }
 }
