@@ -25,6 +25,6 @@ class MemberMapper {
     }
 
     fun allToSimplifiedDTO(members: List<Member>): List<MemberSimplifiedDTO> {
-        TODO("Not yet implemented")
+        return members.map { member -> toSimplifiedDTO(member) }
     }
 }
