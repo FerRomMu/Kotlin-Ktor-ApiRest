@@ -36,7 +36,14 @@ class ChallengeMapper(private val memberMapper: MemberMapper) {
     }
 
     fun resultFromDTO(resultDTO: ChallengeResultDTO): ChallengeResult {
-        TODO("Not yet implemented")
+        return ChallengeResult(
+            resultDTO.id,
+            resultDTO.partyId,
+            resultDTO.option,
+            resultDTO.points,
+            resultDTO.accepted.map { member -> memberMapper.fromSimplifiedDTO(member, null) },
+            resultDTO.rejected.map { member -> memberMapper.fromSimplifiedDTO(member, null) }
+        )
     }
 
     fun pointsToDTO(saveResult: List<Member>, partyId: Long): PointsDTO? {
